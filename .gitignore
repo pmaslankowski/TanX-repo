@@ -244,3 +244,4 @@ ModelManifest.xml
 # Neccesary ignores:
 *.VC.opendb
  *.VC.db
+/TanX/SFML

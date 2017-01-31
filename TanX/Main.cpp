@@ -1,24 +1,12 @@
 #include <SFML/Graphics.hpp>
+#include "Game.h"
 
-int main()
-{
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+int main() {
+	GameSettings settings; //default settings
+	settings.screenHeight = 1280;
+	settings.screenWidth = 720;
 
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-
-		window.clear();
-		window.draw(shape);
-		window.display();
-	}
-
+	Game game(settings);
+	game.mainLoop();
 	return 0;
 }
