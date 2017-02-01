@@ -4,9 +4,11 @@
 
 
 Game::Game(const GameSettings& settings) {
+	printAvailableVideoModes();
+
 	int screenStyle = settings.fullscreen ? sf::Style::Fullscreen : sf::Style::Default;
 	window_.create(sf::VideoMode(settings.screenWidth, settings.screenHeight), settings.title, screenStyle);
-
+	
 	this->maxFPS = settings.maxFPS;
 	state_ = std::make_unique<MainMenuState>();
 }
@@ -34,5 +36,15 @@ void Game::mainLoop() {
 		//if loop goes faster than it is supposed to, program sleeps to not consume all CPU power
 		if (dt < 1000 / maxFPS)
 			sf::sleep(sf::milliseconds(1000 / maxFPS - dt));
+	}
+}
+
+void Game::printAvailableVideoModes() {
+	std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
+	for (std::size_t i = 0; i < modes.size(); ++i) {
+		sf::VideoMode mode = modes[i];
+		std::cout << "Mode #" << i << ": "
+			<< mode.width << "x" << mode.height << " - "
+			<< mode.bitsPerPixel << " bpp" << std::endl;
 	}
 }
