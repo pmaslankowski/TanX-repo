@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 
-typedef sf::RenderWindow Window;
+using Window = sf::RenderWindow;
 
 /* Interface of state of game.*/
 class GameState {

@@ -39,6 +39,7 @@ void Game::mainLoop() {
 	}
 }
 
+
 void Game::printAvailableVideoModes() {
 	std::vector<sf::VideoMode> modes = sf::VideoMode::getFullscreenModes();
 	for (std::size_t i = 0; i < modes.size(); ++i) {

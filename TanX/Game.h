@@ -2,11 +2,11 @@
 #include <iostream>
 #include <memory>
 #include <string>
-
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
-typedef sf::RenderWindow Window;
 
+
+using Window = sf::RenderWindow;
 
 /* Structure with game settings */
 struct GameSettings {

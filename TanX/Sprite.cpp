@@ -18,6 +18,7 @@ void Sprite::setOrientation(const Vector& v) {
 		setRotation(alpha + 360.0f - deltaAlpha);
 }
 
+
 Vector Sprite::getOrientation() const {
 	float alpha = getRotation();
 	return Vector(cos(alpha), sin(alpha));
