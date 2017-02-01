@@ -245,3 +245,4 @@ ModelManifest.xml
 *.VC.opendb
  *.VC.db
 /TanX/SFML
+/desktop.ini
