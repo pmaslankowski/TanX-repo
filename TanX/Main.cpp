@@ -3,8 +3,8 @@
 
 int main() {
 	GameSettings settings; //default settings
-	settings.screenHeight = 1280;
-	settings.screenWidth = 720;
+	settings.screenWidth = 1280;
+	settings.screenHeight = 720;
 
 	Game game(settings);
 	game.mainLoop();

@@ -20,7 +20,7 @@ void MainMenuState::update(double dt) {
 void MainMenuState::draw(Window &window) const {
 	/* Put your code here*/
 	// creating new objects here is bad idea - this code repeats in a loop
-	sf::CircleShape shape(100.f);
+	sf::CircleShape shape(350.f);
 	shape.setFillColor(sf::Color::Green);
 
 	window.draw(shape);

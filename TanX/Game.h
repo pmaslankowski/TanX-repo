@@ -1,10 +1,10 @@
 #pragma once
+#include <iostream>
 #include <memory>
-#include <SFML/Graphics.hpp>
-#include "GameState.h"
 #include <string>
 
-
+#include <SFML/Graphics.hpp>
+#include "GameState.h"
 typedef sf::RenderWindow Window;
 
 
@@ -29,4 +29,6 @@ private:
 	std::unique_ptr<GameState> state_;
 	Window window_;
 	double maxFPS;
+
+	void printAvailableVideoModes();
 };
