@@ -1,4 +1,7 @@
 #include "MainMenuState.h"
+#include "PlayingState.h"
+#include <memory>
+
 
 void MainMenuState::handleInput(Window &window) {
 	/* Replace this with your code */
@@ -8,6 +11,9 @@ void MainMenuState::handleInput(Window &window) {
 			window.close();
 		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
 			window.close();
+		//Test of state change:
+		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+			nextState_ = std::make_unique<PlayingState>();
 	}
 }
 

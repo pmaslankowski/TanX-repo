@@ -22,6 +22,7 @@ public:
 	bool changed() const { return nextState_ != nullptr; }
 	// Function returns next state 
 	std::unique_ptr<GameState> next() { return std::move(nextState_); }
-private:
+
+protected:
 	std::unique_ptr<GameState> nextState_;
 };
