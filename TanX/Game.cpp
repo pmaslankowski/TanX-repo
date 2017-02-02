@@ -4,8 +4,6 @@
 
 
 Game::Game(const GameSettings& settings) {
-	printAvailableVideoModes();
-
 	int screenStyle = settings.fullscreen ? sf::Style::Fullscreen : sf::Style::Default;
 	window_.create(sf::VideoMode(settings.screenWidth, settings.screenHeight), settings.title, screenStyle);
 	
