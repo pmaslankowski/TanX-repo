@@ -1,6 +1,8 @@
 #pragma once
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
+#include "Object.h"
 
 
 using Window = sf::RenderWindow;
