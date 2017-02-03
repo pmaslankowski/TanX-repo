@@ -1,0 +1,19 @@
+#include "Object.h"
+#include<iostream>
+
+
+Object::Object(Texture &texture) : 
+	sprite_(texture), 
+	velocity_(0.0, 0.0) {
+
+	auto rect = getBoundingRect();
+	sprite_.setOrigin(rect.width / 2, rect.height / 2);
+}
+
+
+void Object::update(float dt) {
+	Vector dx = dt * velocity_;
+	Vector x = getPosition();
+	std::cout << "x = [" << x.x << ", " << x.y << "\n";
+	setPosition(x + dx);
+}

@@ -8,7 +8,9 @@ void Sprite::setOrientation(const Vector& v) {
 	const float transformScalar = 180.0f / 3.14159265358979f;
 
 	// cos angle between two vector is equal to their dot product divided by their magnitudes
-	float cosDeltaAlpha = (v.x * sin(alpha) + v.y * cos(alpha)) / sqrt(v.x * v.x + v.y * v.y);
+	// we're performing dot product on reflected vector, because screen coordinate system is left-handed
+	// this is why there is minus sign in formula below
+	float cosDeltaAlpha = (v.x * sin(alpha) - v.y * cos(alpha)) / sqrt(v.x * v.x + v.y * v.y);
 	float deltaAlpha = transformScalar * acos(cosDeltaAlpha);
 
 	// we have to check what quater of coordinates system is given vector in
