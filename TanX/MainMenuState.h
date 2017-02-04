@@ -18,7 +18,9 @@ public:
 
 private:
 	bool isFullScreen;
+	int bullet_fired;
 	iVector mouse_position;
+	Sprite tower;
 	std::vector <Texture> tex_vector;
 	std::vector <Sprite> sprite_vector;
 	std::vector <Stripe> stripe_vector;

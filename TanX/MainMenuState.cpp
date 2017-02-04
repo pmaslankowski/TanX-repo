@@ -6,7 +6,7 @@
 
 void MainMenuState::loadSprites() {
 
-	//loading and setting everything for stripes
+	/* Loading and setting everything for stripes */
 	std::string stripe_length = "short";
 	const std::string stripe_color[] = { "sp", "m", "e", "s", "exit" };
 	for (int i = 0; i < 2; i++) { //we have 2 lengths of stripes to load - short and long ones
@@ -19,16 +19,33 @@ void MainMenuState::loadSprites() {
 		stripe_vector.at(j).setLocation();
 	}
 
+	/* Loading rest of the textures */
 	Texture t_background;
 	t_background.loadFromFile("Graphics/Main_menu/Background.png");
 	tex_vector.push_back(t_background);
+	for (int l = 0; l < stripe_vector.size() / 2; l++) { //loading bullets textures
+		Texture t_bullet;
+		t_bullet.loadFromFile("Graphics/Main_menu/Bullet_" + stripe_color[l] + ".png");
+		tex_vector.push_back(t_bullet);
+	}
 
-	Sprite s_background;
-	s_background.setTexture(tex_vector.at(0));
-	sprite_vector.push_back(s_background);
+	/* Creating rest of the sprites */
+	for (int m = 0; m < stripe_vector.size() / 2 + 1; m++) { //adding background and bullets to sprite_vector
+		Sprite s;
+		s.setTexture(tex_vector.at(m));
+		if (m > 0) {
+			s.scale(0.65f, 0.65f);
+			s.setOrigin(72, 42);
+			s.setPosition(stripe_vector.at(m - 1).getBoundingRect().width - 72, stripe_vector.at(m - 1).getPosition().y + stripe_vector.at(m - 1).getBoundingRect().height / 2);
+		}
+		sprite_vector.push_back(s);
+	}
 
-	for (int k = 0; k < stripe_vector.size() / 2; k++)
-		sprite_vector.push_back(stripe_vector.at(k).getSprite()); //loading all short stripes to the vector of sprites - cause only this vector will be drawn
+	//loading all (short at the beginning) stripes to the vector of sprites - cause only this vector will be drawn
+	for (int k = 0; k < stripe_vector.size() / 2; k++) 
+		sprite_vector.push_back(stripe_vector.at(k).getSprite()); 
+	
+	bullet_fired = -1;
 }
 
 void MainMenuState::handleInput(Window &window) {
@@ -62,10 +79,16 @@ void MainMenuState::handleInput(Window &window) {
 
 		case sf::Event::MouseMoved:
 			for (int i = 0; i < stripe_vector.size() / 2; i++)
-				if (sprite_vector.at(i + 1).getGlobalBounds().contains(mouse_position.x, mouse_position.y))
-					sprite_vector.at(i + 1) = stripe_vector.at(i + stripe_vector.size()/2).getSprite();
+				if (sprite_vector.at(i + 6).getGlobalBounds().contains(mouse_position.x, mouse_position.y))
+					sprite_vector.at(i + 6) = stripe_vector.at(i + stripe_vector.size()/2).getSprite();
 				else
-					sprite_vector.at(i + 1) = stripe_vector.at(i).getSprite();
+					sprite_vector.at(i + 6) = stripe_vector.at(i).getSprite();
+			break;
+
+		case sf::Event::MouseButtonPressed:
+			for (int i = 0; i < stripe_vector.size() / 2; i++)
+				if (sprite_vector.at(i + 6).getGlobalBounds().contains(mouse_position.x, mouse_position.y) && bullet_fired<0)
+					bullet_fired = i;
 			break;
 
 		default:
@@ -76,13 +99,15 @@ void MainMenuState::handleInput(Window &window) {
 
 
 void MainMenuState::update(double dt) {
-	/* Put your code here */
+	if (bullet_fired >= 0) {
+		int current_x = sprite_vector.at(bullet_fired + 1).getPosition().x;
+		int current_y = sprite_vector.at(bullet_fired + 1).getPosition().y;
+		sprite_vector.at(bullet_fired + 1).setPosition(current_x + dt, current_y);
+	}
 }
 
 
 void MainMenuState::draw(Window &window) const {
-	for (int i=0; i<6; i++)
+	for (int i = 0; i < sprite_vector.size(); i++)
 		window.draw(sprite_vector.at(i));
-
-	
 }
