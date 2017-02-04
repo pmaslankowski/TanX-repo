@@ -11,6 +11,8 @@ public:
 	GameState() {}
 	virtual ~GameState() {};
 
+	//Function is supposed to load sprites from default/given directory
+	virtual void loadSprites() = 0;
 	// Function is supposed to handle input of given window. It's called in main loop repeatedly
 	virtual void handleInput(Window &window) = 0;
 	// Function is supposed to update state. It's called in main loop repeatedly

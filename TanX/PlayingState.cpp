@@ -2,6 +2,9 @@
 #include "PlayingState.h"
 
 
+void PlayingState::loadSprites() {
+}
+
 void PlayingState::handleInput(Window &window) {
 	sf::Event event;
 	while (window.pollEvent(event)) {

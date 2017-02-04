@@ -11,6 +11,7 @@ using Texture = sf::Texture;
 
 class Object {
 public:
+	Object();
 	Object(Texture& texture);
 	virtual ~Object() {}
 
@@ -18,10 +19,11 @@ public:
 	Vector getOrientation() const { return sprite_.getOrientation(); }
 	Vector getVelocity() const { return velocity_; }
 	Rectangle getBoundingRect() const { return sprite_.getGlobalBounds(); }
+	Sprite& getSprite() { return sprite_; }
 	void setPosition(const Vector& position) { sprite_.setPosition(position); }
 	void setOrientation(const Vector& orientation) { sprite_.setOrientation(orientation); }
 	void setVelocity(const Vector& velocity) { velocity_ = velocity; }
-
+	void setTexture(const Texture texture) { sprite_.setTexture(texture); }
 
 	virtual void update(float dt);
 	virtual void draw(Window &window) const { window.draw(sprite_); }

@@ -16,6 +16,7 @@ void Game::mainLoop() {
 	sf::Clock clock;
 	sf::Time elapsed;
 	double dt; //duration of one tick of loop
+	state_->loadSprites();
 
 	while (window_.isOpen()) {
 		elapsed = clock.restart();

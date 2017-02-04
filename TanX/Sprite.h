@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-
 using Vector = sf::Vector2f;
 
 class Sprite : public sf::Sprite {
