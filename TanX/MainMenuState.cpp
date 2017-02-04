@@ -1,7 +1,11 @@
 #include <memory>
 #include <iostream>
+#include <SFML/Graphics.hpp>
 #include "MainMenuState.h"
 #include "PlayingState.h"
+#define PI 3.14159265
+
+using fVector = sf::Vector2f;
 
 
 void MainMenuState::loadSprites() {
@@ -28,6 +32,9 @@ void MainMenuState::loadSprites() {
 		t_bullet.loadFromFile("Graphics/Main_menu/Bullet_" + stripe_color[l] + ".png");
 		tex_vector.push_back(t_bullet);
 	}
+	Texture t_tower;
+	t_tower.loadFromFile("Graphics/Main_menu/Tower_black.png");
+	tex_vector.push_back(t_tower);
 
 	/* Creating rest of the sprites */
 	for (int m = 0; m < stripe_vector.size() / 2 + 1; m++) { //adding background and bullets to sprite_vector
@@ -40,19 +47,23 @@ void MainMenuState::loadSprites() {
 		}
 		sprite_vector.push_back(s);
 	}
-
 	//loading all (short at the beginning) stripes to the vector of sprites - cause only this vector will be drawn
 	for (int k = 0; k < stripe_vector.size() / 2; k++) 
 		sprite_vector.push_back(stripe_vector.at(k).getSprite()); 
-	
+
+	s_tower.setTexture(tex_vector.at(tex_vector.size() - 1));
+	s_tower.setOrigin(85, 365);
+	s_tower.scale(0.6f, 0.6f);
+	s_tower.setPosition(980, 465);
 	bullet_fired = -1;
 }
 
 void MainMenuState::handleInput(Window &window) {
-	mouse_position = sf::Mouse::getPosition(window);
-
 	sf::Event event;
 	while (window.pollEvent(event)) {
+
+		mouse_position = sf::Mouse::getPosition(window);
+
 		switch (event.type) {
 		case sf::Event::Closed:
 			window.close();
@@ -99,15 +110,29 @@ void MainMenuState::handleInput(Window &window) {
 
 
 void MainMenuState::update(double dt) {
+	int current_x = 0;
 	if (bullet_fired >= 0) {
-		int current_x = sprite_vector.at(bullet_fired + 1).getPosition().x;
+		current_x = sprite_vector.at(bullet_fired + 1).getPosition().x;
 		int current_y = sprite_vector.at(bullet_fired + 1).getPosition().y;
 		sprite_vector.at(bullet_fired + 1).setPosition(current_x + dt, current_y);
 	}
+
+	s_tower.setRotation(getAngle());
+
+	if (1270 < current_x && current_x < 1290)
+		std::cout << "PRZELACZENIE STANU na " << stripe_vector.at(bullet_fired).getColor() << std::endl;
 }
 
 
 void MainMenuState::draw(Window &window) const {
 	for (int i = 0; i < sprite_vector.size(); i++)
 		window.draw(sprite_vector.at(i));
+	window.draw(s_tower);
+}
+
+float MainMenuState::getAngle() {
+	fVector mouse_vector(mouse_position.x - s_tower.getPosition().x, s_tower.getPosition().y - mouse_position.y);
+	fVector unit_mouse_vector = mouse_vector / sqrt(mouse_vector.x*mouse_vector.x + mouse_vector.y*mouse_vector.y);
+	float cosinus = unit_mouse_vector.x * 0 + unit_mouse_vector.y * 1; //because unit_tower_vector = (0,1)
+	return (mouse_vector.x < 0) ? 360 - (acos(cosinus) * 180.0 / PI) : acos(cosinus) * 180.0 / PI;
 }

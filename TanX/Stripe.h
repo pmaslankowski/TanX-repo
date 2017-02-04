@@ -10,6 +10,7 @@ public:
 
 	void loadTexture();
 	void setLocation();
+	std::string getColor() const { return color; }
 
 private:
 	std::string color;
