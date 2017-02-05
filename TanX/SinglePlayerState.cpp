@@ -44,8 +44,8 @@ void SinglePlayerState::loadSprites() {
 	for (int k = 0; k < colors.size(); k++) { //adding all colors of tanks to the tank vector
 		Sprite s;
 		s.setTexture(tex_vector.at(k + 2+colors.size()));
-		s.scale(0.5f, 0.5f);
-		s.setPosition(350, 175);
+		s.scale(0.23f, 0.23f);
+		s.setPosition(350, 180);
 		tank_vector.push_back(s);
 	}
 	sprite_vector.push_back(tank_vector.at(2)); //adding default tank to the sprite_vector = green tank
