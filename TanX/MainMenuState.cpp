@@ -75,11 +75,15 @@ void MainMenuState::handleInput(Window &window) {
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
-				window.create(sf::VideoMode(1280, 720), "TanX - main menu (1280x720)");
+				if (isFullScreen) 
+					window.create(sf::VideoMode(1280, 720), "TanX - main menu (1280x720)");
+				isFullScreen = false;
 				break;
 
 			case sf::Keyboard::F5:
-				window.create(sf::VideoMode(1280, 720), "TanX - main menu (1280x720)", sf::Style::Fullscreen);
+				if (!isFullScreen)
+					window.create(sf::VideoMode(1280, 720), "TanX - main menu (1280x720)", sf::Style::Fullscreen);
+				isFullScreen = true;
 				break;
 			
 			case sf::Keyboard::Return:
@@ -120,8 +124,10 @@ void MainMenuState::update(double dt) {
 	s_tower.setRotation(getAngle());
 	//s_tower.setOrientation(fVector(mouse_position.x, mouse_position.y) - fVector(s_tower.getPosition().x, s_tower.getPosition().y));
 
-	if (current_x > 1260 && bullet_fired == 0)
+	if (current_x > 1260 && bullet_fired == 0) {
 		nextState_ = std::make_unique<SinglePlayerState>();
+		std::cout << "PRZELACZENIE STANU" << std::endl;
+	}
 }
 
 

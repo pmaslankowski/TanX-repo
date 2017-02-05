@@ -9,7 +9,7 @@ using Texture = sf::Texture;
 
 class SinglePlayerState : public GameState {
 public:
-	SinglePlayerState() {}
+	SinglePlayerState() : isFullScreen(true) {}
 	~SinglePlayerState() {}
 
 	void loadSprites();
@@ -19,8 +19,11 @@ public:
 
 private:
 	iVector mouse_position;
+	bool isFullScreen;
+	int mouse_on_color;
 	std::vector <std::string> colors;
 	std::vector <Texture> tex_vector;
 	std::vector <Sprite> sprite_vector;
+	std::vector <Sprite> tank_vector;
 };
 

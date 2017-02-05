@@ -1,6 +1,7 @@
 #include <memory>
 #include "Game.h"
 #include "MainMenuState.h"
+#include "SinglePlayerState.h"
 
 
 Game::Game(const GameSettings& settings) {
@@ -8,7 +9,7 @@ Game::Game(const GameSettings& settings) {
 	window_.create(sf::VideoMode(settings.screenWidth, settings.screenHeight), settings.title, screenStyle);
 	
 	this->maxFPS = settings.maxFPS;
-	state_ = std::make_unique<MainMenuState>();
+	state_ = std::make_unique<SinglePlayerState>(); //changed from MainMenuState for testing
 }
 
 

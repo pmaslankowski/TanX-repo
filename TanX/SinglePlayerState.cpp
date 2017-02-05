@@ -25,21 +25,31 @@ void SinglePlayerState::loadSprites() {
 		tex_vector.push_back(tex);
 	}
 	
-	/* Creating sprites and adding them to the sprite_vector: background, logo and colors */
+	/* Creating sprites and adding them to the sprite_vector and tan_vector */
 	Sprite s_background, s_logo;
 	s_background.setTexture(tex_vector.at(0));
-	sprite_vector.push_back(s_background);
+	sprite_vector.push_back(s_background); //adding background on position 0
 	s_logo.setTexture(tex_vector.at(1));
-	sprite_vector.push_back(s_logo);
+	sprite_vector.push_back(s_logo); //adding logo on position 1
 
-	for (int j = 0; j < colors.size(); j++) {
+	for (int j = 0; j < colors.size(); j++) { //adding and setting all colors avaliable
 		Sprite s;
 		s.setTexture(tex_vector.at(j+2));
 		s.scale(0.65f, 0.65f);
 		s.setOrigin(49,51);
-		s.setPosition(110 + (j%3)*85, 300 + (j/3 * 85));
+		s.setPosition(110 + (j%3)*80, 300 + (j/3 * 85));
 		sprite_vector.push_back(s);
 	}
+
+	for (int k = 0; k < colors.size(); k++) { //adding all colors of tanks to the tank vector
+		Sprite s;
+		s.setTexture(tex_vector.at(k + 2+colors.size()));
+		s.scale(0.5f, 0.5f);
+		s.setPosition(350, 175);
+		tank_vector.push_back(s);
+	}
+	sprite_vector.push_back(tank_vector.at(2)); //adding default tank to the sprite_vector = green tank
+	sprite_vector.push_back(tank_vector.at(2));
 }
 
 void SinglePlayerState::handleInput(Window & window) {
@@ -57,11 +67,15 @@ void SinglePlayerState::handleInput(Window & window) {
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
-				window.create(sf::VideoMode(1280, 720), "TanX - single player (1280x720)");
+				if (isFullScreen)
+					window.create(sf::VideoMode(1280, 720), "TanX - single player (1280x720)");
+				isFullScreen = false;
 				break;
 
 			case sf::Keyboard::F5:
-				window.create(sf::VideoMode(1280, 720), "TanX - single player (1280x720)", sf::Style::Fullscreen);
+				if (!isFullScreen)
+					window.create(sf::VideoMode(1280, 720), "TanX - single player (1280x720)", sf::Style::Fullscreen);
+				isFullScreen = true;
 				break;
 
 			case sf::Keyboard::Return:
@@ -72,10 +86,19 @@ void SinglePlayerState::handleInput(Window & window) {
 
 		case sf::Event::MouseMoved:
 			std::cout << "x = " << mouse_position.x << ", y = " << mouse_position.y << std::endl;
+			
+			mouse_on_color = -1;
+			for (int i = 0; i < colors.size(); i++) 
+				if (sprite_vector.at(i + 2).getGlobalBounds().contains(mouse_position.x, mouse_position.y)) {
+					mouse_on_color = i;
+					sprite_vector.at(9) = tank_vector.at(i);
+				}
+			std::cout << mouse_on_color << std::endl;
 			break;
 
 		case sf::Event::MouseButtonPressed:
-			
+			if (mouse_on_color > -1)
+				sprite_vector.at(8) = sprite_vector.at(9);
 			break;
 
 		default:
@@ -85,12 +108,14 @@ void SinglePlayerState::handleInput(Window & window) {
 }
 
 void SinglePlayerState::update(double dt) {
+
 }
 
 void SinglePlayerState::draw(Window & window) const {
-	window.draw(sprite_vector.at(0));
-	for (int i = 0; i < colors.size(); i++)
+	window.draw(sprite_vector.at(0)); //background
+	for (int i = 0; i < colors.size()+1; i++) //all colors + default tank
 		window.draw(sprite_vector.at(i+2));
 
-	//std::cout << sprite_vector.size() << std::endl;
+	if (mouse_on_color > -1)
+		window.draw(sprite_vector.at(9)); //tank on which mouse is on
 }
