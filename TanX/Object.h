@@ -33,3 +33,7 @@ protected:
 	Sprite sprite_;
 	Vector velocity_;
 };
+
+using iVector = sf::Vector2i;
+
+using fVector = sf::Vector2f;

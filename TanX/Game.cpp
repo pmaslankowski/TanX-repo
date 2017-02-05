@@ -29,8 +29,10 @@ void Game::mainLoop() {
 		window_.display();
 
 		//if we have to change state:
-		if (state_->changed())
+		if (state_->changed()) {
 			state_ = state_->next();
+			state_->loadSprites();
+		}
 
 		//if loop goes faster than it is supposed to, program sleeps to not consume all CPU power
 		if (dt < 1000 / maxFPS)

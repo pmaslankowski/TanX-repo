@@ -21,3 +21,7 @@ void Object::update(float dt) {
 	Vector x = getPosition();
 	setPosition(x + dx);
 }
+
+
+
+

@@ -8,7 +8,7 @@ using iVector = sf::Vector2i;
 
 class MainMenuState : public GameState {
 public:
-	MainMenuState() : isFullScreen(true) {}
+	MainMenuState() {}
 	~MainMenuState() {}
 
 	void loadSprites();
@@ -18,7 +18,6 @@ public:
 	float getAngle();
 
 private:
-	bool isFullScreen;
 	int bullet_fired;
 	iVector mouse_position;
 	Sprite s_tower;
@@ -26,3 +25,6 @@ private:
 	std::vector <Sprite> sprite_vector;
 	std::vector <Stripe> stripe_vector;
 };
+
+
+using Window = sf::RenderWindow;

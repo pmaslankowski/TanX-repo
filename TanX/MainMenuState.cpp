@@ -3,10 +3,12 @@
 #include <SFML/Graphics.hpp>
 #include "MainMenuState.h"
 #include "PlayingState.h"
+#include "SinglePlayerState.h"
+
 #define PI 3.14159265
 
 using fVector = sf::Vector2f;
-
+using iVector = sf::Vector2i;
 
 void MainMenuState::loadSprites() {
 
@@ -74,12 +76,10 @@ void MainMenuState::handleInput(Window &window) {
 			{
 			case sf::Keyboard::Escape:
 				window.create(sf::VideoMode(1280, 720), "TanX - main menu (1280x720)");
-				isFullScreen = false;
 				break;
 
 			case sf::Keyboard::F5:
 				window.create(sf::VideoMode(1280, 720), "TanX - main menu (1280x720)", sf::Style::Fullscreen);
-				isFullScreen = true;
 				break;
 			
 			case sf::Keyboard::Return:
@@ -118,9 +118,10 @@ void MainMenuState::update(double dt) {
 	}
 
 	s_tower.setRotation(getAngle());
+	//s_tower.setOrientation(fVector(mouse_position.x, mouse_position.y) - fVector(s_tower.getPosition().x, s_tower.getPosition().y));
 
-	if (1270 < current_x && current_x < 1290)
-		std::cout << "PRZELACZENIE STANU na " << stripe_vector.at(bullet_fired).getColor() << std::endl;
+	if (current_x > 1260 && bullet_fired == 0)
+		nextState_ = std::make_unique<SinglePlayerState>();
 }
 
 
