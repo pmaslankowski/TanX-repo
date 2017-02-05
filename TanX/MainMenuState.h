@@ -4,7 +4,7 @@
 #include "Sprite.h"
 #include "Stripe.h"
 
-using iVector = sf::Vector2i;
+using Vector = sf::Vector2f;
 
 class MainMenuState : public GameState {
 public:
@@ -15,12 +15,11 @@ public:
 	void handleInput(Window &window);
 	void update(double dt);
 	void draw(Window &window) const;
-	float getAngle();
 
 private:
 	bool isFullScreen;
 	int bullet_fired;
-	iVector mouse_position;
+	Vector mouse_position;
 	Sprite s_tower;
 	std::vector <Texture> tex_vector;
 	std::vector <Sprite> sprite_vector;

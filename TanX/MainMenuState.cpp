@@ -7,8 +7,7 @@
 
 #define PI 3.14159265
 
-using fVector = sf::Vector2f;
-using iVector = sf::Vector2i;
+using Vector = sf::Vector2f;
 
 void MainMenuState::loadSprites() {
 
@@ -64,7 +63,7 @@ void MainMenuState::handleInput(Window &window) {
 	sf::Event event;
 	while (window.pollEvent(event)) {
 
-		mouse_position = sf::Mouse::getPosition(window);
+		mouse_position = static_cast<Vector>(sf::Mouse::getPosition(window)); //conversion from vector2i to vector2f
 
 		switch (event.type) {
 		case sf::Event::Closed:
@@ -121,8 +120,7 @@ void MainMenuState::update(double dt) {
 		sprite_vector.at(bullet_fired + 1).setPosition(current_x + dt, current_y);
 	}
 
-	s_tower.setRotation(getAngle());
-	//s_tower.setOrientation(fVector(mouse_position.x, mouse_position.y) - fVector(s_tower.getPosition().x, s_tower.getPosition().y));
+	s_tower.setOrientation(mouse_position - s_tower.getPosition());
 
 	if (current_x > 1260 && bullet_fired == 0) {
 		nextState_ = std::make_unique<SinglePlayerState>();
@@ -135,11 +133,4 @@ void MainMenuState::draw(Window &window) const {
 	for (int i = 0; i < sprite_vector.size(); i++)
 		window.draw(sprite_vector.at(i));
 	window.draw(s_tower);
-}
-
-float MainMenuState::getAngle() {
-	fVector mouse_vector(mouse_position.x - s_tower.getPosition().x, s_tower.getPosition().y - mouse_position.y);
-	fVector unit_mouse_vector = mouse_vector / sqrt(mouse_vector.x*mouse_vector.x + mouse_vector.y*mouse_vector.y);
-	float cosinus = unit_mouse_vector.x * 0 + unit_mouse_vector.y * 1; //because unit_tower_vector = (0,1)
-	return (mouse_vector.x < 0) ? 360 - (acos(cosinus) * 180.0 / PI) : acos(cosinus) * 180.0 / PI;
 }
