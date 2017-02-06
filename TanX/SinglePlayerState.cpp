@@ -10,7 +10,7 @@ void SinglePlayerState::loadSprites() {
 	colors = { "red", "yellow", "green", "pink", "blue", "orange" };
 	
 	/* Loading all textures to tex_vector */
-	for (int i = 0; i < 2 + 2*colors.size(); i++) { //loading background, logo, all colors and colored tanks
+	for (int i = 0; i < 3 + 2*colors.size(); i++) { //loading background, logo and logo_red, all colors and colored tanks
 		Texture tex;
 		if (i == 0)
 			tex.loadFromFile("Graphics/Single_player/Background.png");
@@ -20,14 +20,18 @@ void SinglePlayerState::loadSprites() {
 			tex.loadFromFile("Graphics/Single_player/Color_" + colors[i-2] + ".png");
 		else if (8 <= i && i < 14) 
 			tex.loadFromFile("Graphics/Single_player/Color_tank_" + colors[i-8] + ".png");
+		else
+			tex.loadFromFile("Graphics/Single_player/Logo_red.png");
 		tex_vector.push_back(tex);
 	}
 	
 	/* Creating sprites and adding them to the sprite_vector and temp_vector */
-	Sprite s_background, s_logo;
+	Sprite s_background, s_logo, s_logo_red;
 	s_background.setTexture(tex_vector.at(0));
 	sprite_vector.push_back(s_background); //adding background on position 0
 	s_logo.setTexture(tex_vector.at(1));
+	s_logo.setPosition(1100, 25);
+	s_logo.scale(0.55f, 0.55f);
 	sprite_vector.push_back(s_logo); //adding logo on position 1
 
 	for (int j = 0; j < colors.size(); j++) { //adding and setting all colors
@@ -48,6 +52,12 @@ void SinglePlayerState::loadSprites() {
 	}
 	sprite_vector.push_back(tank_vector.at(0)); //adding default tank to the sprite_vector = red tank
 	sprite_vector.push_back(tank_vector.at(0));
+
+	s_logo_red.setTexture(tex_vector.at(14));
+	s_logo_red.setPosition(1090, 16);
+	s_logo_red.scale(0.55f, 0.55f);
+	sprite_vector.push_back(s_logo_red); //adding logo_red to position 10
+
 
 	/* Creating and setting stars in star_vector */
 	star_vector.push_back(Star("yellow", 0));
@@ -121,6 +131,10 @@ void SinglePlayerState::handleInput(Window & window) {
 		case sf::Event::MouseMoved:
 			std::cout << "x = " << mouse_position.x << ", y = " << mouse_position.y << std::endl;
 			
+			mouse_on_logo = false;
+			if (sprite_vector.at(10).getGlobalBounds().contains(mouse_position.x, mouse_position.y))
+				mouse_on_logo = true;
+
 			mouse_on_color = -1;
 			for (int i = 0; i < colors.size(); i++) 
 				if (sprite_vector.at(i + 2).getGlobalBounds().contains(mouse_position.x, mouse_position.y)) {
@@ -133,15 +147,17 @@ void SinglePlayerState::handleInput(Window & window) {
 				if (star_vector.at(j).getSprite().getGlobalBounds().contains(mouse_position.x, mouse_position.y)) {
 					mouse_on_star = j;
 				}
-			std::cout << mouse_on_star << std::endl;
 
 			break;
 
 		case sf::Event::MouseButtonPressed:
-			if (mouse_on_color > -1)
+			if (mouse_on_color > -1) //changing tank color
 				sprite_vector.at(8) = sprite_vector.at(9);
+
+			if (mouse_on_logo) //changing state
+				nextState_ = std::make_unique<PlayingState>();
 			
-			switch (mouse_on_star) {
+			switch (mouse_on_star) { //changing level
 			case 0:
 				star_vector.at(1).setColor("gray");
 				star_vector.at(2).setColor("gray");
@@ -171,9 +187,11 @@ void SinglePlayerState::update(double dt) {
 }
 
 void SinglePlayerState::draw(Window & window) const {
-	window.draw(sprite_vector.at(0)); //background
-	for (int i = 0; i < colors.size()+1; i++) //all colors + default tank
-		window.draw(sprite_vector.at(i+2));
+	for (int i = 0; i < colors.size()+3; i++) //background, logo and all colors + default tank
+		window.draw(sprite_vector.at(i));
+
+	if (mouse_on_logo)
+		window.draw(sprite_vector.at(10));
 
 	if (mouse_on_color > -1)
 		window.draw(sprite_vector.at(9)); //tank on which mouse is on

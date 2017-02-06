@@ -23,6 +23,7 @@ private:
 	bool isFullScreen;
 	int mouse_on_color;
 	int mouse_on_star;
+	bool mouse_on_logo;
 
 	sf::Text name;
 	std::string string = "";
