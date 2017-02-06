@@ -9,7 +9,7 @@ Game::Game(const GameSettings& settings) {
 	window_.create(sf::VideoMode(settings.screenWidth, settings.screenHeight), settings.title, screenStyle);
 	
 	this->maxFPS = settings.maxFPS;
-	state_ = std::make_unique<MainMenuState>();
+	state_ = std::make_unique<SinglePlayerState>(); //changing for tests
 }
 
 
