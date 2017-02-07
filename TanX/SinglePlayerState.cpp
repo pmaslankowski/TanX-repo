@@ -1,4 +1,4 @@
-#include <memory>
+﻿#include <memory>
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "SinglePlayerState.h"
@@ -10,7 +10,7 @@ void SinglePlayerState::loadSprites() {
 	colors = { "red", "yellow", "green", "pink", "blue", "orange" };
 	
 	/* Loading all textures to tex_vector */
-	for (int i = 0; i < 3 + 2*colors.size(); i++) { //loading background, logo and logo_red, all colors and colored tanks
+	for (int i = 0; i < 3 + 2*colors.size() + 1; i++) { //loading background, logo and logo_red, all colors and colored tanks and name_stripe
 		Texture tex;
 		if (i == 0)
 			tex.loadFromFile("Graphics/Single_player/Background.png");
@@ -20,13 +20,15 @@ void SinglePlayerState::loadSprites() {
 			tex.loadFromFile("Graphics/Single_player/Color_" + colors[i-2] + ".png");
 		else if (8 <= i && i < 14) 
 			tex.loadFromFile("Graphics/Single_player/Color_tank_" + colors[i-8] + ".png");
+		else if (i == 14)
+			tex.loadFromFile("Graphics/Single_player/Logo_red.png"); //position 14 - red logo
 		else
-			tex.loadFromFile("Graphics/Single_player/Logo_red.png");
+			tex.loadFromFile("Graphics/Single_player/Name_stripe.png"); //position 15 - name stripe
 		tex_vector.push_back(tex);
 	}
 	
 	/* Creating sprites and adding them to the sprite_vector and temp_vector */
-	Sprite s_background, s_logo, s_logo_red;
+	Sprite s_background, s_logo, s_logo_red, s_name_stripe;
 	s_background.setTexture(tex_vector.at(0));
 	sprite_vector.push_back(s_background); //adding background on position 0
 	s_logo.setTexture(tex_vector.at(1));
@@ -58,6 +60,11 @@ void SinglePlayerState::loadSprites() {
 	s_logo_red.scale(0.55f, 0.55f);
 	sprite_vector.push_back(s_logo_red); //adding logo_red to position 10
 
+	s_name_stripe.setTexture(tex_vector.at(15));
+	s_name_stripe.setPosition(240, 55);
+	s_name_stripe.scale(0.64f, 0.65f);
+	sprite_vector.push_back(s_name_stripe); //adding name_stripe to position 11
+
 
 	/* Creating and setting stars in star_vector */
 	star_vector.push_back(Star("yellow", 0));
@@ -73,11 +80,14 @@ void SinglePlayerState::loadSprites() {
 	/* Setting the text on the screen */
 	font.loadFromFile("Extra/nrkis.ttf");
 	name.setFont(font);
-	name.setOutlineThickness(0.4);
-	name.setOutlineColor(sf::Color(235, 225, 225));
+	name.setStyle(sf::Text::Bold);
 	name.setColor(sf::Color(235, 225, 225));
 	name.setCharacterSize(40);
-	name.setPosition(275, 70);
+	name.setPosition(270, 70);
+
+	cursor = sf::RectangleShape(sf::Vector2f(2, 35));
+	cursor.setPosition(269, 80);
+	cursor.setFillColor(sf::Color(235, 225, 225));
 }
 
 void SinglePlayerState::handleInput(Window & window) {
@@ -109,7 +119,7 @@ void SinglePlayerState::handleInput(Window & window) {
 				break;
 
 			case sf::Keyboard::Return:
-				nextState_ = std::make_unique<PlayingState>();
+				cursor_on = 0;
 				break;
 
 			}
@@ -121,7 +131,7 @@ void SinglePlayerState::handleInput(Window & window) {
 				string.erase(string.size() - 1, 1);
 				name.setString(string);
 			}
-			else if ((unicode == 32 || (unicode >= 48 && unicode <= 57) || (unicode >= 65 && unicode <= 90) || (unicode >= 95 && unicode <= 122)) && string.size() < maxTextLength) {
+			else if (string.size() < maxTextLength) { //(unicode == 32 || (unicode >= 48 && unicode <= 57) || (unicode >= 65 && unicode <= 90) || (unicode >= 95 && unicode <= 122)) && 
 				string += static_cast<char>(unicode);
 				name.setString(string);
 			}
@@ -151,6 +161,11 @@ void SinglePlayerState::handleInput(Window & window) {
 			break;
 
 		case sf::Event::MouseButtonPressed:
+			if (sprite_vector.at(11).getGlobalBounds().contains(mouse_position.x, mouse_position.y))
+				cursor_on = 2;
+			else
+				cursor_on = 0;
+
 			if (mouse_on_color > -1) //changing tank color
 				sprite_vector.at(8) = sprite_vector.at(9);
 
@@ -183,12 +198,23 @@ void SinglePlayerState::handleInput(Window & window) {
 }
 
 void SinglePlayerState::update(double dt) {
-
+	time += dt;
+	cursor.setPosition(272 + name.getGlobalBounds().width, cursor.getPosition().y);
+	if (time > 500) { //miliseconds
+		time = 0;
+		if (cursor_on != 0)
+			cursor_on = cursor_on == 2 ? 1 : 2;
+	}
+	std::cout << "cursor = " << cursor_on << std::endl;
 }
 
 void SinglePlayerState::draw(Window & window) const {
 	for (int i = 0; i < colors.size()+3; i++) //background, logo and all colors + default tank
 		window.draw(sprite_vector.at(i));
+	window.draw(sprite_vector.at(11)); //name strpie
+
+	if (cursor_on == 2)
+		window.draw(cursor);
 
 	if (mouse_on_logo)
 		window.draw(sprite_vector.at(10));
