@@ -18,6 +18,14 @@ public:
 	void update(double dt);
 	void draw(Window &window) const;
 
+	void loadTextures(std::vector <std::string> colors[]);
+	void loadToSpriteVector();
+	void loadToStarVector();
+	void loadToTankVector();
+	void caseMouseMoved();
+	void caseButtonPressed();
+	void caseTextEntered(sf::Uint32 unicode);
+
 private:
 	iVector mouse_position;
 	bool isFullScreen;
