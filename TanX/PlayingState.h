@@ -4,11 +4,13 @@
 #include "GameState.h"
 #include "Object.h"
 #include "TextureManager.h"
+
 using Window = sf::RenderWindow;
 
 class PlayingState : public GameState {
 public:
-	PlayingState() : mng() {}
+	PlayingState(TextureManager& textureManager) : 
+		textureManager(textureManager) {}
 	~PlayingState() {}
 
 	void loadSprites();
@@ -16,5 +18,5 @@ public:
 	void update(double dt);
 	void draw(Window& window) const;
 private:
-	TextureManager mng;
+	TextureManager& textureManager;
 };

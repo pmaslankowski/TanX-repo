@@ -86,7 +86,7 @@ void MainMenuState::handleInput(Window &window) {
 				break;
 			
 			case sf::Keyboard::Return:
-				nextState_ = std::make_unique<PlayingState>();
+				nextState_ = std::make_unique<PlayingState>(textureManager);
 				break;
 			}
 			break;
