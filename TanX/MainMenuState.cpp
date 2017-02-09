@@ -20,7 +20,7 @@ void MainMenuState::loadSprites() {
 		stripe_length = "long";
 	}
 	for (int j = 0; j < stripe_vector.size(); j++) {
-		stripe_vector.at(j).loadTexture();
+		stripe_vector.at(j).loadTexture(textureManager);
 		stripe_vector.at(j).setLocation();
 	}
 

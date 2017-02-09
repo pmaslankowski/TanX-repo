@@ -4,7 +4,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "GameState.h"
-
+#include "TextureManager.h"
 
 using Window = sf::RenderWindow;
 
@@ -27,8 +27,10 @@ public:
 	void mainLoop();
 private:
 	std::unique_ptr<GameState> state_;
+	TextureManager textureManager_;
 	Window window_;
 	double maxFPS;
 
 	void printAvailableVideoModes();
+
 };

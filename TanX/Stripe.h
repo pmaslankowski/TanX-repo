@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Object.h"
+#include "TextureManager.h"
 
 class Stripe : public Object {
 public:
@@ -8,7 +9,7 @@ public:
 	Stripe(std::string color, std::string length);
 	~Stripe() {}
 
-	void loadTexture();
+	void loadTexture(const TextureManager& textureManager);
 	void setLocation();
 	std::string getColor() const { return color; }
 

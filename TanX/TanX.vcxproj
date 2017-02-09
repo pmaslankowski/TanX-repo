@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GlobalServices.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -156,16 +157,22 @@
     <ClCompile Include="SinglePlayerState.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Stripe.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="WindowsFileSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FileSystem.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GlobalServices.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PlayingState.h" />
     <ClInclude Include="SinglePlayerState.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Stripe.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="WindowsFileSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
