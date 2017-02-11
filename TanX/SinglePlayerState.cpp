@@ -17,17 +17,8 @@ void SinglePlayerState::loadSprites() {
 	loadToStarVector();
 	loadToSpriteVector();
 
-	/* Setting the text on the screen */
-	font.loadFromFile("Extra/nrkis.ttf");
-	name.setFont(font);
-	name.setStyle(sf::Text::Bold);
-	name.setColor(sf::Color(235, 225, 225));
-	name.setCharacterSize(40);
-	name.setPosition(270, 70);
-
-	cursor = sf::RectangleShape(sf::Vector2f(2, 35));
-	cursor.setPosition(269, 80);
-	cursor.setFillColor(sf::Color(235, 225, 225));
+	name_stripe.loadTexture();
+	name_stripe.setLocation();
 }
 
 void SinglePlayerState::handleInput(Window & window) {
@@ -35,8 +26,9 @@ void SinglePlayerState::handleInput(Window & window) {
 	sf::Uint32 unicode;
 
 	while (window.pollEvent(event)) {
-
 		mouse_position = sf::Mouse::getPosition(window);
+
+		name_stripe.handleInput(event, mouse_position);
 
 		switch (event.type) {
 		case sf::Event::Closed:
@@ -58,16 +50,7 @@ void SinglePlayerState::handleInput(Window & window) {
 				isFullScreen = true;
 				break;
 
-			case sf::Keyboard::Return:
-				cursor_on = 0;
-				break;
-
 			}
-			break;
-
-		case sf::Event::TextEntered:
-			unicode = event.text.unicode;
-			caseTextEntered(unicode); //defined below
 			break;
 
 		case sf::Event::MouseMoved:
@@ -85,22 +68,12 @@ void SinglePlayerState::handleInput(Window & window) {
 }
 
 void SinglePlayerState::update(double dt) {
-	time += dt;
-	cursor.setPosition(272 + name.getGlobalBounds().width, cursor.getPosition().y);
-	if (time > 500) { //miliseconds
-		time = 0;
-		if (cursor_on != 0)
-			cursor_on = cursor_on == 2 ? 1 : 2;
-	}
+	name_stripe.update(dt);
 }
 
 void SinglePlayerState::draw(Window & window) const {
 	for (int i = 0; i < colors.size()+3; i++) //background, logo and all colors + default tank
 		window.draw(sprite_vector.at(i));
-	window.draw(sprite_vector.at(11)); //name strpie
-
-	if (cursor_on == 2)
-		window.draw(cursor);
 
 	if (mouse_on_logo)
 		window.draw(sprite_vector.at(10));
@@ -112,7 +85,7 @@ void SinglePlayerState::draw(Window & window) const {
 		star_vector.at(j).draw(window);
 	}
 
-	window.draw(name);
+	name_stripe.draw(window);
 }
 
 void SinglePlayerState::loadTextures(std::vector <std::string> colors[]) {
@@ -128,8 +101,6 @@ void SinglePlayerState::loadTextures(std::vector <std::string> colors[]) {
 			tex.loadFromFile("Graphics/Single_player/Color_tank_" + colors -> at(i-8) + ".png");
 		else if (i == 14)
 			tex.loadFromFile("Graphics/Single_player/Logo_red.png"); //position 14 - red logo
-		else
-			tex.loadFromFile("Graphics/Single_player/Name_stripe.png"); //position 15 - name stripe
 		tex_vector.push_back(tex);
 	}
 }
@@ -159,11 +130,6 @@ void SinglePlayerState::loadToSpriteVector() {
 	s_logo_red.setPosition(1090, 16);
 	s_logo_red.scale(0.55f, 0.55f);
 	sprite_vector.push_back(s_logo_red); //adding logo_red to position 10
-
-	s_name_stripe.setTexture(tex_vector.at(15));
-	s_name_stripe.setPosition(240, 55);
-	s_name_stripe.scale(0.64f, 0.65f);
-	sprite_vector.push_back(s_name_stripe); //adding name_stripe to position 11
 }
 
 void SinglePlayerState::loadToStarVector() {
@@ -210,11 +176,6 @@ void SinglePlayerState::caseMouseMoved() {
 }
 
 void SinglePlayerState::caseButtonPressed() {
-	if (sprite_vector.at(11).getGlobalBounds().contains(mouse_position.x, mouse_position.y))
-		cursor_on = 2;
-	else
-		cursor_on = 0;
-
 	if (mouse_on_color > -1) //changing tank color
 		sprite_vector.at(8) = sprite_vector.at(9);
 
@@ -236,16 +197,5 @@ void SinglePlayerState::caseButtonPressed() {
 		break;
 	default:
 		break;
-	}
-}
-
-void SinglePlayerState::caseTextEntered(sf::Uint32 unicode) {
-	if (unicode == 8 && string.size() > 0) {
-		string.erase(string.size() - 1, 1);
-		name.setString(string);
-	}
-	else if (string.size() < maxTextLength) { //(unicode == 32 || (unicode >= 48 && unicode <= 57) || (unicode >= 65 && unicode <= 90) || (unicode >= 95 && unicode <= 122)) && 
-		string += static_cast<char>(unicode);
-		name.setString(string);
 	}
 }

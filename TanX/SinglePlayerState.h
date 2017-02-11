@@ -3,6 +3,7 @@
 #include "GameState.h"
 #include "Sprite.h"
 #include "Star.h"
+#include "NameStripe.h"
 
 using iVector = sf::Vector2i;
 using Texture = sf::Texture;
@@ -10,7 +11,7 @@ using Texture = sf::Texture;
 
 class SinglePlayerState : public GameState {
 public:
-	SinglePlayerState() : isFullScreen(true), maxTextLength(16), time(0) {}
+	SinglePlayerState() : isFullScreen(true) {}
 	~SinglePlayerState() {}
 
 	void loadSprites();
@@ -32,14 +33,8 @@ private:
 	int mouse_on_color;
 	int mouse_on_star;
 	bool mouse_on_logo;
-	int cursor_on; //0 - nothing, 1 - hidden, 2 - shown
-
-	sf::Text name;
-	std::string string = "";
-	sf::Font font;
-	int maxTextLength;
-	sf::RectangleShape cursor;
-	double time; //in miliseconds
+	
+	NameStripe name_stripe;
 
 	std::vector <std::string> colors;
 	std::vector <Texture> tex_vector;
