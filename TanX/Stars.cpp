@@ -10,13 +10,13 @@ void Stars::loadTexture() {
 	tex_vector.push_back(tex_star);
 	tex_star.loadFromFile("Graphics/Single_player/Star_yellow.png"); //YELLOW on position 1
 	tex_vector.push_back(tex_star);
+
+	star_vector.push_back(Object(tex_vector.at(1))); //yellow
+	for (int i = 0; i < levels - 1; i++)
+		star_vector.push_back(Object(tex_vector.at(0))); //gray
 }
 
 void Stars::setLocation() {
-	star_vector.push_back(Object(tex_vector.at(1))); //yellow
-	star_vector.push_back(Object(tex_vector.at(0))); //gray
-	star_vector.push_back(Object(tex_vector.at(0))); //gray
-
 	for (int i=0; i<levels; i++) {
 		star_vector.at(i).id = "OFF"; //is mouse ON or OFF that star at the moment	
 		star_vector.at(i).setPosition(sf::Vector2f(250 + i*85, 550));		
@@ -31,6 +31,26 @@ void Stars::setColor(std::vector<Object> &vector, int i, std::string color) {
 		vector.at(i).getSprite().setTexture(tex_vector.at(1));
 }
 
+void Stars::setStarsInVector(std::vector<Object>& vector, int i) { //change needed if more levels
+	switch (i) {
+	case 0:
+		setColor(vector, 1, "gray");
+		setColor(vector, 2, "gray");
+		break;
+	case 1:
+		setColor(vector, 1, "yellow");
+		setColor(vector, 2, "gray");
+		break;
+	case 2:
+		setColor(vector, 1, "yellow");
+		setColor(vector, 2, "yellow");
+		break;
+	default:
+		break;
+	}
+}
+
+
 void Stars::handleInput(sf::Event & event, sf::Vector2i mouse_position) {
 	switch (event.type) {
 	case sf::Event::MouseMoved:
@@ -38,22 +58,7 @@ void Stars::handleInput(sf::Event & event, sf::Vector2i mouse_position) {
 			star_vector.at(i).id = "OFF";
 			if (star_vector.at(i).getSprite().getGlobalBounds().contains(mouse_position.x, mouse_position.y)) {
 				star_vector.at(i).id = "ON";
-				switch (i) {
-				case 0:
-					setColor(temp_star_vector, 1, "gray");
-					setColor(temp_star_vector, 2, "gray");
-					break;
-				case 1:
-					setColor(temp_star_vector, 1, "yellow");
-					setColor(temp_star_vector, 2, "gray");
-					break;
-				case 2:
-					setColor(temp_star_vector, 1, "yellow");
-					setColor(temp_star_vector, 2, "yellow");
-					break;
-				default:
-					break;
-				}
+				setStarsInVector(temp_star_vector, i);
 			}
 		}
 		break;
@@ -61,30 +66,13 @@ void Stars::handleInput(sf::Event & event, sf::Vector2i mouse_position) {
 	case sf::Event::MouseButtonPressed:
 		for (int i = 0; i < levels; i++)
 			if (star_vector.at(i).id == "ON")
-				switch (i) {
-				case 0:
-					setColor(star_vector, 1, "gray");
-					setColor(star_vector, 2, "gray");
-					break;
-				case 1:
-					setColor(star_vector, 1, "yellow");
-					setColor(star_vector, 2, "gray");
-					break;
-				case 2:
-					setColor(star_vector, 1, "yellow");
-					setColor(star_vector, 2, "yellow");
-					break;
-				default:
-					break;
-				}
+				setStarsInVector(star_vector, i);
 		break;
 
 	default:
 		break;
 	}
 }
-
-void Stars::update(double dt) {}
 
 void Stars::draw(sf::RenderWindow & window) const {
 	bool is_mouse_on_star = false;
