@@ -53,7 +53,6 @@ void NameStripe::handleInput(sf::Event & event, sf::Vector2i mouse_position) {
 				string += static_cast<char>(unicode);
 				name.setString(string);
 			}
-			std::cout << string.size() << " | " << s_name_stripe.getGlobalBounds().width - 50 << std::endl;
 		}
 		break;
 

@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "SinglePlayerState.h"
 #include "PlayingState.h"
-#include "Star.h"
+#include "Stars.h"
 
 
 void SinglePlayerState::loadSprites() {
@@ -14,10 +14,12 @@ void SinglePlayerState::loadSprites() {
 	
 	/* Loading all sprites to default vectors */
 	loadToTankVector();
-	loadToStarVector();
 	loadToSpriteVector();
 
+	star_vector.loadTexture();
 	name_stripe.loadTexture();
+
+	star_vector.setLocation();
 	name_stripe.setLocation();
 }
 
@@ -29,6 +31,7 @@ void SinglePlayerState::handleInput(Window & window) {
 		mouse_position = sf::Mouse::getPosition(window);
 
 		name_stripe.handleInput(event, mouse_position);
+		star_vector.handleInput(event, mouse_position);
 
 		switch (event.type) {
 		case sf::Event::Closed:
@@ -81,10 +84,7 @@ void SinglePlayerState::draw(Window & window) const {
 	if (mouse_on_color > -1)
 		window.draw(sprite_vector.at(9)); //tank on which mouse is on
 
-	for (int j = 0; j < 3 + (mouse_on_star > -1 ? mouse_on_star : 0); j++) {
-		star_vector.at(j).draw(window);
-	}
-
+	star_vector.draw(window);
 	name_stripe.draw(window);
 }
 
@@ -132,18 +132,6 @@ void SinglePlayerState::loadToSpriteVector() {
 	sprite_vector.push_back(s_logo_red); //adding logo_red to position 10
 }
 
-void SinglePlayerState::loadToStarVector() {
-	star_vector.push_back(Star("yellow", 0));
-	star_vector.push_back(Star("gray", 1));
-	star_vector.push_back(Star("gray", 2));
-	star_vector.push_back(Star("yellow", 1));
-	star_vector.push_back(Star("yellow", 2));
-	for (int n = 0; n < 5; n++) {
-		star_vector.at(n).loadTexture();
-		star_vector.at(n).setLocation();
-	}
-}
-
 void SinglePlayerState::loadToTankVector() {
 	for (int k = 0; k < colors.size(); k++) { //adding all colors of tanks to the temp_vector
 		Sprite s;
@@ -168,11 +156,6 @@ void SinglePlayerState::caseMouseMoved() {
 			sprite_vector.at(9) = tank_vector.at(i);
 		}
 
-	mouse_on_star = -1;
-	for (int j = 0; j < 3; j++)
-		if (star_vector.at(j).getSprite().getGlobalBounds().contains(mouse_position.x, mouse_position.y)) {
-			mouse_on_star = j;
-		}
 }
 
 void SinglePlayerState::caseButtonPressed() {
@@ -182,20 +165,4 @@ void SinglePlayerState::caseButtonPressed() {
 	if (mouse_on_logo) //changing state
 		nextState_ = std::make_unique<PlayingState>();
 
-	switch (mouse_on_star) { //changing level
-	case 0:
-		star_vector.at(1).setColor("gray");
-		star_vector.at(2).setColor("gray");
-		break;
-	case 1:
-		star_vector.at(1).setColor("yellow");
-		star_vector.at(2).setColor("gray");
-		break;
-	case 2:
-		star_vector.at(1).setColor("yellow");
-		star_vector.at(2).setColor("yellow");
-		break;
-	default:
-		break;
-	}
 }

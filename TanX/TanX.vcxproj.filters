@@ -39,10 +39,10 @@
     <ClCompile Include="SinglePlayerState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Star.cpp">
+    <ClCompile Include="NameStripe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NameStripe.cpp">
+    <ClCompile Include="Stars.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,10 +71,10 @@
     <ClInclude Include="SinglePlayerState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Star.h">
+    <ClInclude Include="NameStripe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NameStripe.h">
+    <ClInclude Include="Stars.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
