@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Object.h"
+#include "TextureManager.h"
 
 class Stars : public Object {
 public:
@@ -8,7 +9,7 @@ public:
 	Stars();
 	~Stars() {}
 
-	void loadTexture();
+	void loadTexture(TextureManager& textureManager);
 	void setLocation();
 	std::string getColor(int i) const { return star_vector.at(i).id; }
 	void setColor(std::vector<Object> &vector, int i, std::string color);

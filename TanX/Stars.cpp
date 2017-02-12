@@ -1,10 +1,10 @@
 #include <iostream>
 #include "Stars.h"
-
+#include "TextureManager.h"
 
 Stars::Stars() : levels(3) {}
 
-void Stars::loadTexture() {
+void Stars::loadTexture(TextureManager& textureManager) {
 	Texture tex_star;
 	tex_star.loadFromFile("Graphics/Single_player/Star_gray.png"); //GRAY on position 0
 	tex_vector.push_back(tex_star);

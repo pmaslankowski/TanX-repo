@@ -3,18 +3,18 @@
 #include <SFML/Graphics.hpp>
 #include "SinglePlayerState.h"
 #include "PlayingState.h"
+#include "TextureManager.h"
 
 
-void SinglePlayerState::loadSprites() {
+void SinglePlayerState::loadSprites(TextureManager& textureManager) {
 	/* Loading textures */
-	tex_background.loadFromFile("Graphics/Single_player/Background.png");
-	star_vector.loadTexture();
+	star_vector.loadTexture(textureManager);
 	colors_and_tank.loadTexture();
 	name_stripe.loadTexture();
 	logo.loadTexture();
 
 	/* Creating and setting sprites */
-	background.setTexture(tex_background);
+	background.setTexture(textureManager.getTexture("Single_player\\Background.png"));
 	star_vector.setLocation();
 	colors_and_tank.setLocation();
 	name_stripe.setLocation();

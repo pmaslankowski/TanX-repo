@@ -9,14 +9,11 @@ using Window = sf::RenderWindow;
 
 class PlayingState : public GameState {
 public:
-	PlayingState(TextureManager& textureManager) : 
-		textureManager(textureManager) {}
+	PlayingState() {}
 	~PlayingState() {}
 
-	void loadSprites();
+	void loadSprites(TextureManager& textureManager);
 	void handleInput(Window& window);
 	void update(double dt);
 	void draw(Window& window) const;
-private:
-	TextureManager& textureManager;
 };

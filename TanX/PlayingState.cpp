@@ -2,7 +2,7 @@
 #include "PlayingState.h"
 
 
-void PlayingState::loadSprites() {
+void PlayingState::loadSprites(TextureManager& textureManager) {
 }
 
 void PlayingState::handleInput(Window &window) {

@@ -17,7 +17,7 @@ public:
 	SinglePlayerState() : isFullScreen(true) {}
 	~SinglePlayerState() {}
 
-	void loadSprites();
+	void loadSprites(TextureManager& textureManager);
 	void handleInput(Window &window);
 	void update(double dt);
 	void draw(Window &window) const;

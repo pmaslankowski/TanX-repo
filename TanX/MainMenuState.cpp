@@ -4,11 +4,12 @@
 #include "MainMenuState.h"
 #include "PlayingState.h"
 #include "SinglePlayerState.h"
+#include "TextureManager.h"
 
 #define PI 3.14159265
 
 
-void MainMenuState::loadSprites() {
+void MainMenuState::loadSprites(TextureManager& textureManager) {
 
 	/* Loading and setting everything for stripes */
 	std::string stripe_length = "short";
@@ -85,7 +86,7 @@ void MainMenuState::handleInput(Window &window) {
 				break;
 			
 			case sf::Keyboard::Return:
-				nextState_ = std::make_unique<PlayingState>(textureManager);
+				nextState_ = std::make_unique<PlayingState>();
 				break;
 			}
 			break;

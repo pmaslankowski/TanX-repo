@@ -11,7 +11,7 @@ Game::Game(const GameSettings& settings) {
 	
 	this->maxFPS = settings.maxFPS;
 
-	state_ = std::make_unique<MainMenuState>(textureManager_); //changed from MainMenuState for testing
+	state_ = std::make_unique<MainMenuState>(); //changed from MainMenuState for testing
 }
 
 
@@ -19,7 +19,7 @@ void Game::mainLoop() {
 	sf::Clock clock;
 	sf::Time elapsed;
 	double dt; //duration of one tick of loop
-	state_->loadSprites();
+	state_->loadSprites(textureManager_);
 
 	while (window_.isOpen()) {
 		elapsed = clock.restart();
@@ -34,7 +34,7 @@ void Game::mainLoop() {
 		//if we have to change state:
 		if (state_->changed()) {
 			state_ = state_->next();
-			state_->loadSprites();
+			state_->loadSprites(textureManager_);
 		}
 
 		//if loop goes faster than it is supposed to, program sleeps to not consume all CPU power
