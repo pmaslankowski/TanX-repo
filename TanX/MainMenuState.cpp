@@ -19,7 +19,7 @@ void MainMenuState::loadSprites() {
 		stripe_length = "long";
 	}
 	for (int j = 0; j < stripe_vector.size(); j++) {
-		stripe_vector.at(j).loadTexture();
+		stripe_vector.at(j).loadTexture(textureManager);
 		stripe_vector.at(j).setLocation();
 	}
 
@@ -85,7 +85,7 @@ void MainMenuState::handleInput(Window &window) {
 				break;
 			
 			case sf::Keyboard::Return:
-				nextState_ = std::make_unique<PlayingState>();
+				nextState_ = std::make_unique<PlayingState>(textureManager);
 				break;
 			}
 			break;

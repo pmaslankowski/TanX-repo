@@ -151,6 +151,7 @@
     <ClCompile Include="ColoredTank.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Logo.cpp" />
+    <ClCompile Include="GlobalServices.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="NameStripe.cpp" />
@@ -160,12 +161,18 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Stars.cpp" />
     <ClCompile Include="Stripe.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="WindowsFileSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColoredTank.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Logo.h" />
+    <ClInclude Include="FileSystem.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GlobalServices.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="NameStripe.h" />
     <ClInclude Include="Object.h" />
@@ -174,6 +181,8 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Stars.h" />
     <ClInclude Include="Stripe.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="WindowsFileSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

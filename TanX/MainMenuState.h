@@ -3,12 +3,16 @@
 #include "GameState.h"
 #include "Sprite.h"
 #include "Stripe.h"
+#include "TextureManager.h"
 
 using Vector = sf::Vector2f;
 
 class MainMenuState : public GameState {
 public:
-	MainMenuState() : isFullScreen(true) {}
+	MainMenuState(TextureManager& textureManager) :
+		isFullScreen(true), 
+		textureManager(textureManager) 
+	{}
 	~MainMenuState() {}
 
 	void loadSprites();
@@ -22,6 +26,7 @@ private:
 	Vector mouse_position;
 	Sprite s_tower;
 	std::vector <Texture> tex_vector;
+	TextureManager& textureManager;
 	std::vector <Sprite> sprite_vector;
 	std::vector <Stripe> stripe_vector;
 };

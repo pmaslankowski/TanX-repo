@@ -52,6 +52,10 @@ void SinglePlayerState::handleInput(Window & window) {
 					window.create(sf::VideoMode(1280, 720), "TanX - single player (1280x720)", sf::Style::Fullscreen);
 				isFullScreen = true;
 				break;
+
+			case sf::Keyboard::Return:
+				//nextState_ = std::make_unique<PlayingState>();
+				break;
 			}
 			break;
 

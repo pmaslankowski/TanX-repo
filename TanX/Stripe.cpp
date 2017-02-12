@@ -2,11 +2,9 @@
 
 Stripe::Stripe(std::string color, std::string length) : color(color), length(length) {}
 
-void Stripe::loadTexture() {
-	std::string path = "Graphics/Main_menu/Stripe_" + length + "_" + color + ".png";
-	if (!texture.loadFromFile(path))
-		std::invalid_argument("Can't load the texture");
-	sprite_.setTexture(texture);
+void Stripe::loadTexture(const TextureManager& textureManager) {
+	std::string path = "Main_menu\\Stripe_" + length + "_" + color + ".png";
+	sprite_.setTexture(textureManager.getTexture(path));
 }
 
 void Stripe::setLocation() {
