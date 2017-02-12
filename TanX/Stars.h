@@ -19,7 +19,7 @@ public:
 	void draw(sf::RenderWindow &window) const;
 
 private:
-	std::vector <Texture> tex_vector;
+	std::vector <Texture*> tex_vector;
 	std::vector <Object> star_vector;
 	std::vector <Object> temp_star_vector;
 	int levels;

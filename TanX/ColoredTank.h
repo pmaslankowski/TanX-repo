@@ -17,7 +17,7 @@ public:
 
 private:
 	std::vector <std::string> colors;
-	std::vector <Texture> tex_vector;
+	std::vector <Texture*> tex_vector;
 	std::vector <Sprite> color_vector;
 
 	Sprite default_tank;

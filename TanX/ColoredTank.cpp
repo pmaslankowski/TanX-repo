@@ -6,12 +6,12 @@ ColoredTank::ColoredTank() {
 }
 
 void ColoredTank::loadTexture(TextureManager& textureManager) {
-	Texture tex_color;
-	Texture tex_tank;
+	Texture* tex_color;
+	Texture* tex_tank;
 	for (int i = 0; i < colors.size(); i++) {
-		tex_color = textureManager.getTexture("Single_player\\Color_" + colors.at(i) + ".png"); //loading color textures
+		tex_color = &textureManager.getTexture("Single_player\\Color_" + colors.at(i) + ".png"); //loading color textures
 		tex_vector.push_back(tex_color);
-		tex_tank = textureManager.getTexture("Single_player\\Color_tank_" + colors.at(i) + ".png"); //loading tank textures
+		tex_tank = &textureManager.getTexture("Single_player\\Color_tank_" + colors.at(i) + ".png"); //loading tank textures
 		tex_vector.push_back(tex_tank);
 	}	
 }
@@ -20,21 +20,21 @@ void ColoredTank::setLocation() {
 	/* Setting position of all colors and temporary tanks */
 	for (int i = 0; i < colors.size(); i++) { 
 		Sprite s_color;
-		s_color.setTexture(tex_vector.at(2*i));
+		s_color.setTexture(*tex_vector.at(2*i));
 		s_color.scale(0.65f, 0.65f);
 		s_color.setOrigin(49, 51);
 		s_color.setPosition(110 + (i % 3) * 80, 300 + (i / 3 * 85));
 		color_vector.push_back(s_color);
 		
 		Sprite s_tank;
-		s_tank.setTexture(tex_vector.at(2*i+1));
+		s_tank.setTexture(*tex_vector.at(2*i+1));
 		s_tank.scale(0.23f, 0.23f);
 		s_tank.setPosition(350, 180);
 		temp_tank_vector.push_back(s_tank);
 	}
 
 	/* Setting color and position of the default tank  */
-	default_tank.setTexture(tex_vector.at(1)); 
+	default_tank.setTexture(*tex_vector.at(1)); 
 	default_tank.scale(0.23f, 0.23f);
 	default_tank.setPosition(350, 180);
 }

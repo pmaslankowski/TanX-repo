@@ -8,11 +8,13 @@
 
 void SinglePlayerState::loadSprites(TextureManager& textureManager) {
 	/* Loading textures */
+	std::cout << "Loading textures" << "\n";
 	star_vector.loadTexture(textureManager);
 	colors_and_tank.loadTexture(textureManager);
 	name_stripe.loadTexture(textureManager);
 	logo.loadTexture(textureManager);
 
+	std::cout << "Settings sprites." << "\n";
 	/* Creating and setting sprites */
 	background.setTexture(textureManager.getTexture("Single_player\\Background.png"));
 	star_vector.setLocation();

@@ -5,15 +5,14 @@
 Stars::Stars() : levels(3) {}
 
 void Stars::loadTexture(TextureManager& textureManager) {
-	Texture tex_star;
-	tex_star = textureManager.getTexture("Single_player\\Star_gray.png"); //GRAY on position 0
+	Texture* tex_star = &textureManager.getTexture("Single_player\\Star_gray.png"); //GRAY on position 0
 	tex_vector.push_back(tex_star);
-	tex_star = textureManager.getTexture("Single_player\\Star_yellow.png"); //YELLOW on position 1
+	tex_star = &textureManager.getTexture("Single_player\\Star_yellow.png"); //YELLOW on position 1
 	tex_vector.push_back(tex_star);
 
-	star_vector.push_back(Object(tex_vector.at(1))); //yellow
+	star_vector.push_back(Object(*tex_vector.at(1))); //yellow
 	for (int i = 0; i < levels - 1; i++)
-		star_vector.push_back(Object(tex_vector.at(0))); //gray
+		star_vector.push_back(Object(*tex_vector.at(0))); //gray
 
 }
 
@@ -27,9 +26,9 @@ void Stars::setLocation() {
 
 void Stars::setColor(std::vector<Object> &vector, int i, std::string color) {
 	if (color == "gray")
-		vector.at(i).getSprite().setTexture(tex_vector.at(0));
+		vector.at(i).getSprite().setTexture(*tex_vector.at(0));
 	else if (color == "yellow")
-		vector.at(i).getSprite().setTexture(tex_vector.at(1));
+		vector.at(i).getSprite().setTexture(*tex_vector.at(1));
 }
 
 void Stars::setStarsInVector(std::vector<Object>& vector, int i) { //change needed if more levels
