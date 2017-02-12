@@ -50,6 +50,7 @@
     </ClCompile>
     <ClCompile Include="Logo.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="TextureManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -95,6 +96,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Logo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="TextureManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>

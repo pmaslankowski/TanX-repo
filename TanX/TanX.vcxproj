@@ -170,8 +170,6 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Logo.h" />
     <ClInclude Include="FileSystem.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameState.h" />
     <ClInclude Include="GlobalServices.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="NameStripe.h" />
