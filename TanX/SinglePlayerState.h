@@ -2,6 +2,11 @@
 #include <vector>
 #include "GameState.h"
 #include "Sprite.h"
+#include "Stars.h"
+#include "NameStripe.h"
+#include "ColoredTank.h"
+#include "Logo.h"
+
 
 using iVector = sf::Vector2i;
 using Texture = sf::Texture;
@@ -20,10 +25,13 @@ public:
 private:
 	iVector mouse_position;
 	bool isFullScreen;
-	int mouse_on_color;
-	std::vector <std::string> colors;
-	std::vector <Texture> tex_vector;
-	std::vector <Sprite> sprite_vector;
-	std::vector <Sprite> tank_vector;
+
+	Texture tex_background;
+	Sprite background;
+
+	Stars star_vector;
+	ColoredTank colors_and_tank;
+	NameStripe name_stripe;
+	Logo logo;
 };
 

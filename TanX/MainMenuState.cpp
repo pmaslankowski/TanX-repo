@@ -7,7 +7,6 @@
 
 #define PI 3.14159265
 
-using Vector = sf::Vector2f;
 
 void MainMenuState::loadSprites() {
 

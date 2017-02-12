@@ -10,6 +10,7 @@ Game::Game(const GameSettings& settings) {
 	window_.create(sf::VideoMode(settings.screenWidth, settings.screenHeight), settings.title, screenStyle);
 	
 	this->maxFPS = settings.maxFPS;
+
 	state_ = std::make_unique<MainMenuState>(textureManager_); //changed from MainMenuState for testing
 }
 
