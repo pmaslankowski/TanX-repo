@@ -9,9 +9,9 @@
 void SinglePlayerState::loadSprites(TextureManager& textureManager) {
 	/* Loading textures */
 	star_vector.loadTexture(textureManager);
-	colors_and_tank.loadTexture();
-	name_stripe.loadTexture();
-	logo.loadTexture();
+	colors_and_tank.loadTexture(textureManager);
+	name_stripe.loadTexture(textureManager);
+	logo.loadTexture(textureManager);
 
 	/* Creating and setting sprites */
 	background.setTexture(textureManager.getTexture("Single_player\\Background.png"));

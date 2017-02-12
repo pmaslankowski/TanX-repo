@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "TextureManager.h"
+
 
 class NameStripe {
 public:
@@ -7,7 +9,7 @@ public:
 	NameStripe() : time(0) {}
 	~NameStripe() {}
 
-	void loadTexture();
+	void loadTexture(TextureManager& textureManager);
 	void setLocation();
 	void handleInput(sf::Event &event, sf::Vector2i mouse_position);
 	void update(double dt);

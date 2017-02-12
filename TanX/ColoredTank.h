@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include "Object.h"
+#include "TextureManager.h"
+
 
 class ColoredTank {
 public:
@@ -8,7 +10,7 @@ public:
 	ColoredTank();
 	~ColoredTank() {}
 
-	void loadTexture();
+	void loadTexture(TextureManager& textureManager);
 	void setLocation();
 	void handleInput(sf::Event &event, sf::Vector2i mouse_position);
 	void draw(sf::RenderWindow &window) const;

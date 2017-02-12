@@ -4,10 +4,9 @@
 #include "NameStripe.h"
 
 
-
-void NameStripe::loadTexture() {
+void NameStripe::loadTexture(TextureManager& textureManager) {
 	font.loadFromFile("Extra/nrkis.ttf");
-	tex_name_stripe.loadFromFile("Graphics/Single_player/Name_stripe.png");
+	tex_name_stripe = textureManager.getTexture("Single_player\\Name_stripe.png");
 	s_name_stripe.setTexture(tex_name_stripe);
 }
 

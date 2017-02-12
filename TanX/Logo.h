@@ -3,6 +3,8 @@
 #include <memory>
 #include "Object.h"
 #include "GameState.h"
+#include "TextureManager.h"
+
 
 class Logo {
 public:
@@ -10,7 +12,7 @@ public:
 	Logo() {}
 	~Logo() {}
 
-	void loadTexture();
+	void loadTexture(TextureManager& textureManager);
 	void setLocation();
 	void handleInput(sf::Event &event, sf::Vector2i mouse_position);
 	void draw(sf::RenderWindow &window) const;

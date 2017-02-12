@@ -9,7 +9,7 @@
 #define PI 3.14159265
 
 
-void MainMenuState::loadSprites(TextureManager& textureManager) {
+void MainMenuState::loadSprites(TextureManager & textureManager) {
 
 	/* Loading and setting everything for stripes */
 	std::string stripe_length = "short";

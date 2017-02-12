@@ -5,13 +5,13 @@ ColoredTank::ColoredTank() {
 	colors = { "red", "yellow", "green", "pink", "blue", "orange" };
 }
 
-void ColoredTank::loadTexture() {
+void ColoredTank::loadTexture(TextureManager& textureManager) {
 	Texture tex_color;
 	Texture tex_tank;
 	for (int i = 0; i < colors.size(); i++) {
-		tex_color.loadFromFile("Graphics/Single_player/Color_" + colors.at(i) + ".png"); //loading color textures
+		tex_color = textureManager.getTexture("Single_player\\Color_" + colors.at(i) + ".png"); //loading color textures
 		tex_vector.push_back(tex_color);
-		tex_tank.loadFromFile("Graphics/Single_player/Color_tank_" + colors.at(i) + ".png"); //loading tank textures
+		tex_tank = textureManager.getTexture("Single_player\\Color_tank_" + colors.at(i) + ".png"); //loading tank textures
 		tex_vector.push_back(tex_tank);
 	}	
 }

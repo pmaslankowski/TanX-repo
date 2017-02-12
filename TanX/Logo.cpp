@@ -1,9 +1,9 @@
 #include "Logo.h"
 
 
-void Logo::loadTexture() {
-	tex_logo.loadFromFile("Graphics/Single_player/Logo.png");
-	tex_temp_logo.loadFromFile("Graphics/Single_player/Logo_red.png");
+void Logo::loadTexture(TextureManager& textureManager) {
+	tex_logo = textureManager.getTexture("Single_player\\Logo.png");
+	tex_temp_logo = textureManager.getTexture("Single_player\\Logo_red.png");
 }
 
 void Logo::setLocation() {

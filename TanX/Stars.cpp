@@ -6,14 +6,15 @@ Stars::Stars() : levels(3) {}
 
 void Stars::loadTexture(TextureManager& textureManager) {
 	Texture tex_star;
-	tex_star.loadFromFile("Graphics/Single_player/Star_gray.png"); //GRAY on position 0
+	tex_star = textureManager.getTexture("Single_player\\Star_gray.png"); //GRAY on position 0
 	tex_vector.push_back(tex_star);
-	tex_star.loadFromFile("Graphics/Single_player/Star_yellow.png"); //YELLOW on position 1
+	tex_star = textureManager.getTexture("Single_player\\Star_yellow.png"); //YELLOW on position 1
 	tex_vector.push_back(tex_star);
 
 	star_vector.push_back(Object(tex_vector.at(1))); //yellow
 	for (int i = 0; i < levels - 1; i++)
 		star_vector.push_back(Object(tex_vector.at(0))); //gray
+
 }
 
 void Stars::setLocation() {
