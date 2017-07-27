@@ -23,7 +23,7 @@ void ColoredTank::setLocation() {
 		s_color.setTexture(*tex_vector.at(2*i));
 		s_color.scale(0.65f, 0.65f);
 		s_color.setOrigin(49, 51);
-		s_color.setPosition(110 + (i % 3) * 80, 300 + (i / 3 * 85));
+		s_color.setPosition(110.f + (i % 3) * 80.f, 300.f + (i / 3 * 85.f));
 		color_vector.push_back(s_color);
 		
 		Sprite s_tank;
