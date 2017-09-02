@@ -18,6 +18,44 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Commons\Game.cpp" />
+    <ClCompile Include="Commons\GlobalServices.cpp" />
+    <ClCompile Include="Commons\Main.cpp" />
+    <ClCompile Include="Commons\Object.cpp" />
+    <ClCompile Include="Commons\Sprite.cpp" />
+    <ClCompile Include="Commons\Stripe.cpp" />
+    <ClCompile Include="Commons\TextureManager.cpp" />
+    <ClCompile Include="Commons\WindowsFileSystem.cpp" />
+    <ClCompile Include="MainMenuState\MainMenuState.cpp" />
+    <ClCompile Include="ObjectFactory.cpp" />
+    <ClCompile Include="PlayingState\PlayingState.cpp" />
+    <ClCompile Include="SinglePlayerState\ColoredTank.cpp" />
+    <ClCompile Include="SinglePlayerState\Logo.cpp" />
+    <ClCompile Include="SinglePlayerState\NameStripe.cpp" />
+    <ClCompile Include="SinglePlayerState\SinglePlayerState.cpp" />
+    <ClCompile Include="SinglePlayerState\Stars.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Commons\FileSystem.h" />
+    <ClInclude Include="Commons\Game.h" />
+    <ClInclude Include="Commons\GameState.h" />
+    <ClInclude Include="Commons\GlobalServices.h" />
+    <ClInclude Include="Commons\NullFileSystem.h" />
+    <ClInclude Include="Commons\Object.h" />
+    <ClInclude Include="Commons\Sprite.h" />
+    <ClInclude Include="Commons\Stripe.h" />
+    <ClInclude Include="Commons\TextureManager.h" />
+    <ClInclude Include="Commons\WindowsFileSystem.h" />
+    <ClInclude Include="MainMenuState\MainMenuState.h" />
+    <ClInclude Include="ObjectFactory.h" />
+    <ClInclude Include="PlayingState\PlayingState.h" />
+    <ClInclude Include="SinglePlayerState\ColoredTank.h" />
+    <ClInclude Include="SinglePlayerState\Logo.h" />
+    <ClInclude Include="SinglePlayerState\NameStripe.h" />
+    <ClInclude Include="SinglePlayerState\SinglePlayerState.h" />
+    <ClInclude Include="SinglePlayerState\Stars.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9AA154B8-C444-41A3-89FC-A587589600FB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -77,9 +115,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\Build$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)\Build\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -88,7 +128,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>$(SFML_staticness);WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SFML_x86_include);$(ProjectDir)\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SFML_x86_include);$(ProjectDir)\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -104,7 +144,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>$(SFML_staticness);_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SFML_include)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SFML_include);$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -122,7 +162,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>$(SFML_staticness);WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SFML_x86_include);$(ProjectDir)\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SFML_x86_include);$(ProjectDir)\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,7 +182,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>$(SFML_staticness);NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SFML_include)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SFML_include);$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,41 +193,6 @@
       <AdditionalDependencies>$(SFML_dependencies_release);$(SFML_dependencies_common);kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="ColoredTank.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Logo.cpp" />
-    <ClCompile Include="GlobalServices.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MainMenuState.cpp" />
-    <ClCompile Include="NameStripe.cpp" />
-    <ClCompile Include="Object.cpp" />
-    <ClCompile Include="PlayingState.cpp" />
-    <ClCompile Include="SinglePlayerState.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="Stars.cpp" />
-    <ClCompile Include="Stripe.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
-    <ClCompile Include="WindowsFileSystem.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ColoredTank.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameState.h" />
-    <ClInclude Include="Logo.h" />
-    <ClInclude Include="FileSystem.h" />
-    <ClInclude Include="GlobalServices.h" />
-    <ClInclude Include="MainMenuState.h" />
-    <ClInclude Include="NameStripe.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="PlayingState.h" />
-    <ClInclude Include="SinglePlayerState.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="Stars.h" />
-    <ClInclude Include="Stripe.h" />
-    <ClInclude Include="TextureManager.h" />
-    <ClInclude Include="WindowsFileSystem.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

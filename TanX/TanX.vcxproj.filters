@@ -1,114 +1,123 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Commons">
+      <UniqueIdentifier>{d7750e25-cef3-425b-8885-6182420f5574}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="PlayingState">
+      <UniqueIdentifier>{48493914-8f5a-4f59-85a4-1292a5a9ebe7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="SinglePlayerState">
+      <UniqueIdentifier>{7c4ce3ed-f51b-48e4-9832-952f515b9c6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainMenuState">
+      <UniqueIdentifier>{03f6947e-a00e-483d-8cb1-49499c6a58bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="MainMenuState\MainMenuState.cpp">
+      <Filter>MainMenuState</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SinglePlayerState\ColoredTank.cpp">
+      <Filter>SinglePlayerState</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenuState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SinglePlayerState\Logo.cpp">
+      <Filter>SinglePlayerState</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SinglePlayerState\NameStripe.cpp">
+      <Filter>SinglePlayerState</Filter>
     </ClCompile>
-    <ClCompile Include="PlayingState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SinglePlayerState\SinglePlayerState.cpp">
+      <Filter>SinglePlayerState</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SinglePlayerState\Stars.cpp">
+      <Filter>SinglePlayerState</Filter>
     </ClCompile>
-    <ClCompile Include="Stripe.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="PlayingState\PlayingState.cpp">
+      <Filter>PlayingState</Filter>
     </ClCompile>
-    <ClCompile Include="SinglePlayerState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Commons\Game.cpp">
+      <Filter>Commons</Filter>
     </ClCompile>
-    <ClCompile Include="NameStripe.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Commons\GlobalServices.cpp">
+      <Filter>Commons</Filter>
     </ClCompile>
-    <ClCompile Include="Stars.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Commons\Main.cpp">
+      <Filter>Commons</Filter>
     </ClCompile>
-    <ClCompile Include="ColoredTank.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Commons\Object.cpp">
+      <Filter>Commons</Filter>
     </ClCompile>
-    <ClCompile Include="Logo.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Commons\Sprite.cpp">
+      <Filter>Commons</Filter>
     </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Commons\Stripe.cpp">
+      <Filter>Commons</Filter>
     </ClCompile>
-    <ClCompile Include="WindowsFileSystem.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Commons\TextureManager.cpp">
+      <Filter>Commons</Filter>
     </ClCompile>
-    <ClCompile Include="GlobalServices.cpp">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="Commons\WindowsFileSystem.cpp">
+      <Filter>Commons</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectFactory.cpp">
+      <Filter>Commons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MainMenuState\MainMenuState.h">
+      <Filter>MainMenuState</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenuState.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SinglePlayerState\ColoredTank.h">
+      <Filter>SinglePlayerState</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SinglePlayerState\Logo.h">
+      <Filter>SinglePlayerState</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SinglePlayerState\NameStripe.h">
+      <Filter>SinglePlayerState</Filter>
     </ClInclude>
-    <ClInclude Include="PlayingState.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SinglePlayerState\SinglePlayerState.h">
+      <Filter>SinglePlayerState</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SinglePlayerState\Stars.h">
+      <Filter>SinglePlayerState</Filter>
     </ClInclude>
-    <ClInclude Include="Stripe.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="PlayingState\PlayingState.h">
+      <Filter>PlayingState</Filter>
     </ClInclude>
-    <ClInclude Include="SinglePlayerState.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Commons\FileSystem.h">
+      <Filter>Commons</Filter>
     </ClInclude>
-    <ClInclude Include="NameStripe.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Commons\Game.h">
+      <Filter>Commons</Filter>
     </ClInclude>
-    <ClInclude Include="Stars.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Commons\GameState.h">
+      <Filter>Commons</Filter>
     </ClInclude>
-    <ClInclude Include="ColoredTank.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Commons\GlobalServices.h">
+      <Filter>Commons</Filter>
     </ClInclude>
-    <ClInclude Include="Logo.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Commons\NullFileSystem.h">
+      <Filter>Commons</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Commons\Object.h">
+      <Filter>Commons</Filter>
     </ClInclude>
-    <ClInclude Include="FileSystem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Commons\Sprite.h">
+      <Filter>Commons</Filter>
     </ClInclude>
-    <ClInclude Include="WindowsFileSystem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Commons\Stripe.h">
+      <Filter>Commons</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalServices.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Commons\TextureManager.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="Commons\WindowsFileSystem.h">
+      <Filter>Commons</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectFactory.h">
+      <Filter>Commons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
