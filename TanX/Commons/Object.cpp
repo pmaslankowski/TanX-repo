@@ -7,6 +7,7 @@ Object::Object() :
 	sprite_.setOrigin(rect.width / 2, rect.height / 2);
 }
 
+
 Object::Object(Texture &texture) :
 	sprite_(texture), 
 	velocity_(0.0, 0.0) {

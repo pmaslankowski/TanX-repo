@@ -2,6 +2,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "Sprite.h"
+#include "TextureManager.h"
 
 
 using Vector = sf::Vector2f;
@@ -23,8 +24,8 @@ public:
 	void setPosition(const Vector& position) { sprite_.setPosition(position); }
 	void setOrientation(const Vector& orientation) { sprite_.setOrientation(orientation); }
 	void setVelocity(const Vector& velocity) { velocity_ = velocity; }
-	void setTexture(const Texture texture) { sprite_.setTexture(texture); }
 
+	virtual void loadSprite(TextureManager& textureManager) {}
 	virtual void update(float dt);
 	virtual void draw(Window &window) const { window.draw(sprite_); }
 	
