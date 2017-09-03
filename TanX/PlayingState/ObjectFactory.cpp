@@ -14,11 +14,12 @@ Object* ObjectFactory::create(const std::string& id, int x, int y, int width, in
 }
 
 
-void ObjectFactory::register_object(const std::string& id, CreateFunctionPtr create) {
+bool ObjectFactory::register_object(const std::string& id, CreateFunctionPtr create) {
 	auto& registered_objects = instance().registered_objects;
 	if (registered_objects.find(id) != registered_objects.end())
 		throw std::runtime_error("[ObjectFactory] Attempt to register already registered object. id: " + id);
 	registered_objects[id] = create;
+	return true;
 }
 
 
@@ -32,6 +33,15 @@ void ObjectFactory::unregister_object(const std::string& id) {
 
 
 ObjectFactory& ObjectFactory::instance() {
-	static auto instance = ObjectFactory();
+	static ObjectFactory instance{};
 	return instance;
 }
+
+
+#define REGISTER_OBJECT(object, id) static bool object##_registered_in_ObjectFactory = \
+	ObjectFactory::register_object(id, [](int x, int y, int width, int height) { \
+		return new object(x, y, width, height); \
+	});
+
+#define REGISTER_OBJECT_WITH_LAMBDA(object, id, lambda) static bool object##_registered_in_ObjectFactory = \
+	ObjectFactory::register_object(id, lambda);

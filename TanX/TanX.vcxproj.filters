@@ -60,8 +60,8 @@
     <ClCompile Include="Commons\WindowsFileSystem.cpp">
       <Filter>Commons</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectFactory.cpp">
-      <Filter>Commons</Filter>
+    <ClCompile Include="PlayingState\ObjectFactory.cpp">
+      <Filter>PlayingState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,8 +116,8 @@
     <ClInclude Include="Commons\WindowsFileSystem.h">
       <Filter>Commons</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectFactory.h">
-      <Filter>Commons</Filter>
+    <ClInclude Include="PlayingState\ObjectFactory.h">
+      <Filter>PlayingState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

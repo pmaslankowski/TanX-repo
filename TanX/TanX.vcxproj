@@ -28,7 +28,7 @@
     <ClCompile Include="Commons\TextureManager.cpp" />
     <ClCompile Include="Commons\WindowsFileSystem.cpp" />
     <ClCompile Include="MainMenuState\MainMenuState.cpp" />
-    <ClCompile Include="ObjectFactory.cpp" />
+    <ClCompile Include="PlayingState\ObjectFactory.cpp" />
     <ClCompile Include="PlayingState\PlayingState.cpp" />
     <ClCompile Include="SinglePlayerState\ColoredTank.cpp" />
     <ClCompile Include="SinglePlayerState\Logo.cpp" />
@@ -48,7 +48,7 @@
     <ClInclude Include="Commons\TextureManager.h" />
     <ClInclude Include="Commons\WindowsFileSystem.h" />
     <ClInclude Include="MainMenuState\MainMenuState.h" />
-    <ClInclude Include="ObjectFactory.h" />
+    <ClInclude Include="PlayingState\ObjectFactory.h" />
     <ClInclude Include="PlayingState\PlayingState.h" />
     <ClInclude Include="SinglePlayerState\ColoredTank.h" />
     <ClInclude Include="SinglePlayerState\Logo.h" />
@@ -109,17 +109,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\Build$(Configuration)\</OutDir>
+    <IntDir>Build$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IntDir>Build\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)\Build$(Configuration)\</OutDir>
+    <IntDir>Build$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)\Build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>Build\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
