@@ -17,6 +17,14 @@ Object::Object(Texture &texture) :
 }
 
 
+void Object::scaleTexture() {
+	const auto& bounds = sprite_.getGlobalBounds();
+	float width_factor = width_ / bounds.width;
+	float height_factor = height_ / bounds.height;
+	sprite_.setScale(width_factor, height_factor);
+}
+
+
 void Object::update(float dt) {
 	Vector dx = dt * velocity_;
 	Vector x = getPosition();

@@ -63,6 +63,9 @@
     <ClCompile Include="PlayingState\ObjectFactory.cpp">
       <Filter>PlayingState</Filter>
     </ClCompile>
+    <ClCompile Include="PlayingState\Tree.cpp">
+      <Filter>PlayingState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenuState\MainMenuState.h">
@@ -117,6 +120,9 @@
       <Filter>Commons</Filter>
     </ClInclude>
     <ClInclude Include="PlayingState\ObjectFactory.h">
+      <Filter>PlayingState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingState\Tree.h">
       <Filter>PlayingState</Filter>
     </ClInclude>
   </ItemGroup>

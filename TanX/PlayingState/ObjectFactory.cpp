@@ -5,7 +5,7 @@
 
 
 
-Object* ObjectFactory::create(const std::string& id, int x, int y, int width, int height) {
+Object* ObjectFactory::create(const std::string& id, float x, float y, float width, float height) {
 	auto& registered_objects = instance().registered_objects;
 	auto it = registered_objects.find(id);
 	if (it == registered_objects.end())
@@ -36,12 +36,3 @@ ObjectFactory& ObjectFactory::instance() {
 	static ObjectFactory instance{};
 	return instance;
 }
-
-
-#define REGISTER_OBJECT(object, id) static bool object##_registered_in_ObjectFactory = \
-	ObjectFactory::register_object(id, [](int x, int y, int width, int height) { \
-		return new object(x, y, width, height); \
-	});
-
-#define REGISTER_OBJECT_WITH_LAMBDA(object, id, lambda) static bool object##_registered_in_ObjectFactory = \
-	ObjectFactory::register_object(id, lambda);

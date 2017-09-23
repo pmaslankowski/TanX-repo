@@ -21,6 +21,7 @@ public:
 	void draw(Window& window) const;
 
 private:
+	TextureManager* m_texture_manager;
 	std::vector<Object*> m_objects;
 };
 
