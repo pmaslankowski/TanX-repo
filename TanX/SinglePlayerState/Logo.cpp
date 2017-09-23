@@ -30,7 +30,7 @@ void Logo::handleInput(sf::Event & event, Window& window, GameState* current_sta
 
 	case sf::Event::MouseButtonPressed:
 		if (mouse_on_logo)
-			current_state->m_nextState = std::make_unique<PlayingState>();
+			current_state->m_nextState = std::make_unique<PlayingState>("Levels\\test.level");
 		break;
 
 	default:

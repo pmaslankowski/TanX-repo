@@ -88,7 +88,7 @@ void MainMenuState::handleInput(Window &window) {
 				break;
 			
 			case sf::Keyboard::Return:
-				m_nextState = std::make_unique<PlayingState>();
+				m_nextState = std::make_unique<PlayingState>("Levels\\test.level");
 				break;
 			}
 			break;
