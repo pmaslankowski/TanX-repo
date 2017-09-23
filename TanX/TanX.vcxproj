@@ -49,6 +49,8 @@
     <ClInclude Include="Commons\TextureManager.h" />
     <ClInclude Include="Commons\WindowsFileSystem.h" />
     <ClInclude Include="MainMenuState\MainMenuState.h" />
+    <ClInclude Include="PlayingState\CollisionDetector.h" />
+    <ClInclude Include="PlayingState\CollisionDispatcher.h" />
     <ClInclude Include="PlayingState\ObjectFactory.h" />
     <ClInclude Include="PlayingState\PlayingState.h" />
     <ClInclude Include="PlayingState\Tree.h" />

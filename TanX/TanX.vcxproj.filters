@@ -125,5 +125,11 @@
     <ClInclude Include="PlayingState\Tree.h">
       <Filter>PlayingState</Filter>
     </ClInclude>
+    <ClInclude Include="PlayingState\CollisionDispatcher.h">
+      <Filter>PlayingState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingState\CollisionDetector.h">
+      <Filter>PlayingState</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
