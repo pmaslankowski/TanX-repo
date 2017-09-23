@@ -14,7 +14,7 @@ using Window = sf::RenderWindow;
 class PlayingState : public GameState {
 public:
 	PlayingState(const std::string& level_filename);
-	~PlayingState() {}
+	~PlayingState();
 
 	void loadSprites(TextureManager& textureManager);
 	void handleInput(Window& window);

@@ -15,6 +15,12 @@ PlayingState::PlayingState(const std::string& level_filename) {
 }
 
 
+PlayingState::~PlayingState() {
+	for (auto* object : m_objects)
+		delete object;
+}
+
+
 void PlayingState::loadSprites(TextureManager& textureManager){
 	m_texture_manager = &textureManager;
 	for (auto* object : m_objects)
