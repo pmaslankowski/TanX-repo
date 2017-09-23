@@ -10,6 +10,6 @@ SET SFML_x86_lib="%cd%/SFML_x86/lib"
 SET SFML_staticness=SFML_STATIC
 
 SETLOCAL
-SET /p runvs=Run Visual Studio?\n [y/n]
-IF "%runvs%" EQU "y" START vs14.lnk "%cd%/TanX/TanX.sln"
-START cmd.exe \k "C: && cd %cd%"
+SET /p runterminal=Run Terminal in project directory? [y/n] 
+IF "%runterminal%" EQU "y" START cmd.exe \k "C: && cd %cd%"
+START vs14.lnk "%cd%/TanX/TanX.sln"
