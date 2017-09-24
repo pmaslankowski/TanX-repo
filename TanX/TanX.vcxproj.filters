@@ -13,6 +13,9 @@
     <Filter Include="MainMenuState">
       <UniqueIdentifier>{03f6947e-a00e-483d-8cb1-49499c6a58bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayingState\Objects">
+      <UniqueIdentifier>{198fe29e-1d86-4312-b44d-564d510de502}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainMenuState\MainMenuState.cpp">
@@ -63,8 +66,8 @@
     <ClCompile Include="PlayingState\ObjectFactory.cpp">
       <Filter>PlayingState</Filter>
     </ClCompile>
-    <ClCompile Include="PlayingState\Tree.cpp">
-      <Filter>PlayingState</Filter>
+    <ClCompile Include="PlayingState\Objects\Tree.cpp">
+      <Filter>PlayingState\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,14 +125,14 @@
     <ClInclude Include="PlayingState\ObjectFactory.h">
       <Filter>PlayingState</Filter>
     </ClInclude>
-    <ClInclude Include="PlayingState\Tree.h">
-      <Filter>PlayingState</Filter>
-    </ClInclude>
     <ClInclude Include="PlayingState\CollisionDispatcher.h">
       <Filter>PlayingState</Filter>
     </ClInclude>
     <ClInclude Include="PlayingState\CollisionDetector.h">
       <Filter>PlayingState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingState\Objects\Tree.h">
+      <Filter>PlayingState\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -29,8 +29,8 @@
     <ClCompile Include="Commons\WindowsFileSystem.cpp" />
     <ClCompile Include="MainMenuState\MainMenuState.cpp" />
     <ClCompile Include="PlayingState\ObjectFactory.cpp" />
+    <ClCompile Include="PlayingState\Objects\Tree.cpp" />
     <ClCompile Include="PlayingState\PlayingState.cpp" />
-    <ClCompile Include="PlayingState\Tree.cpp" />
     <ClCompile Include="SinglePlayerState\ColoredTank.cpp" />
     <ClCompile Include="SinglePlayerState\Logo.cpp" />
     <ClCompile Include="SinglePlayerState\NameStripe.cpp" />
@@ -52,8 +52,8 @@
     <ClInclude Include="PlayingState\CollisionDetector.h" />
     <ClInclude Include="PlayingState\CollisionDispatcher.h" />
     <ClInclude Include="PlayingState\ObjectFactory.h" />
+    <ClInclude Include="PlayingState\Objects\Tree.h" />
     <ClInclude Include="PlayingState\PlayingState.h" />
-    <ClInclude Include="PlayingState\Tree.h" />
     <ClInclude Include="SinglePlayerState\ColoredTank.h" />
     <ClInclude Include="SinglePlayerState\Logo.h" />
     <ClInclude Include="SinglePlayerState\NameStripe.h" />
