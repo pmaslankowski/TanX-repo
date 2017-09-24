@@ -32,6 +32,7 @@ public:
 	void setWidth(float width_) { width_ = width_; }
 	void setHeight(float height_) { height_ = height_; }
 	void setVelocity(const Vector& velocity) { velocity_ = velocity; }
+	void setPriority(float priority_) { priority_ = priority_; }
 	void scaleTexture();
 
 	virtual void loadSprite(TextureManager& textureManager) {} // remember to invoke scaleTexture in this function

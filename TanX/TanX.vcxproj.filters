@@ -69,6 +69,12 @@
     <ClCompile Include="PlayingState\Objects\Tree.cpp">
       <Filter>PlayingState\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>PlayingState\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>PlayingState\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenuState\MainMenuState.h">
@@ -132,6 +138,12 @@
       <Filter>PlayingState</Filter>
     </ClInclude>
     <ClInclude Include="PlayingState\Objects\Tree.h">
+      <Filter>PlayingState\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>PlayingState\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
       <Filter>PlayingState\Objects</Filter>
     </ClInclude>
   </ItemGroup>

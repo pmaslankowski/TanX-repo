@@ -31,12 +31,46 @@ void PlayingState::loadSprites(TextureManager& textureManager){
 void PlayingState::handleInput(Window &window) {
 	sf::Event event;
 	while (window.pollEvent(event)) {
-		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+		switch (event.type) {
+		case sf::Event::Closed:
 			window.close();
-		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A) {
-			std::cout << "Tree added\n";
-			m_objects.push_back(ObjectFactory::create("Tree1", 200, 500, 100, 100, 1));
-			(*m_objects.rbegin())->loadSprite(*m_texture_manager);
+			break;
+
+		case sf::Event::KeyPressed:
+			switch (event.key.code)
+			{
+			case sf::Keyboard::Escape:
+				if (isFullScreen)
+					window.create(sf::VideoMode(1280, 720), "TanX - main menu (1280x720)");
+				isFullScreen = false;
+				break;
+
+			case sf::Keyboard::F5:
+				if (!isFullScreen)
+					window.create(sf::VideoMode(1280, 720), "TanX - main menu (1280x720)", sf::Style::Fullscreen);
+				isFullScreen = true;
+				break;
+
+			case sf::Keyboard::A:
+				std::cout << "Tree added\n";
+				m_objects.push_back(ObjectFactory::create("Tree1", 200, 500, 100, 100, 1));
+				(*m_objects.rbegin())->loadSprite(*m_texture_manager);
+				break;
+
+			case sf::Keyboard::Return:
+				window.close();
+				break;
+			}
+			break;
+
+		case sf::Event::MouseMoved:
+			break;
+
+		case sf::Event::MouseButtonPressed:
+			break;
+
+		default:
+			break;
 		}
 	}
 }

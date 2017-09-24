@@ -22,6 +22,7 @@ public:
 	void draw(Window& window) const;
 
 private:
+	bool isFullScreen;
 	TextureManager* m_texture_manager;
 	std::vector<Object*> m_objects;
 };

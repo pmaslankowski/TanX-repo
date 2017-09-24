@@ -36,6 +36,8 @@
     <ClCompile Include="SinglePlayerState\NameStripe.cpp" />
     <ClCompile Include="SinglePlayerState\SinglePlayerState.cpp" />
     <ClCompile Include="SinglePlayerState\Stars.cpp" />
+    <ClCompile Include="Tank.cpp" />
+    <ClCompile Include="Terrain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commons\FileSystem.h" />
@@ -59,6 +61,8 @@
     <ClInclude Include="SinglePlayerState\NameStripe.h" />
     <ClInclude Include="SinglePlayerState\SinglePlayerState.h" />
     <ClInclude Include="SinglePlayerState\Stars.h" />
+    <ClInclude Include="Tank.h" />
+    <ClInclude Include="Terrain.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9AA154B8-C444-41A3-89FC-A587589600FB}</ProjectGuid>
