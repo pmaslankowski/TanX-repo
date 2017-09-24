@@ -24,8 +24,8 @@ void Tree::loadSprite(TextureManager& texture_manager) {
 
 
 REGISTER_OBJECT(Tree, "Tree1");
-REGISTER_OBJECT_WITH_LAMBDA(Tree, "Tree2", [](float x, float y, float width, float height) -> Object* {
-	return new Tree(x, y, width, height, Tree::Type::Tree2);
+REGISTER_OBJECT_WITH_LAMBDA(Tree, "Tree2", [](float x, float y, float width, float height, float priority) -> Object* {
+	return new Tree(x, y, width, height, priority, Tree::Type::Tree2);
 });
 
 

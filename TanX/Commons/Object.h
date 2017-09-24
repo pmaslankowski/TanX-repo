@@ -13,8 +13,8 @@ using Texture = sf::Texture;
 class Object {
 public:
 	Object();
-	Object(float x, float y, float width, float height) 
-		: width_(width), height_(height) { sprite_.setPosition(x, y); }
+	Object(float x, float y, float width, float height, float priority) 
+		: width_(width), height_(height), priority_(priority) { sprite_.setPosition(x, y); }
 	explicit Object(Texture& texture);
 
 	virtual ~Object() {}
@@ -26,6 +26,7 @@ public:
 	Sprite& getSprite() { return sprite_; }
 	float getHeight() const { return height_; }
 	float getWidth() const { return width_; }
+	float getPriority() const { return priority_; }
 	void setPosition(const Vector& position) { sprite_.setPosition(position); }
 	void setOrientation(const Vector& orientation) { sprite_.setOrientation(orientation); }
 	void setWidth(float width_) { width_ = width_; }
@@ -41,9 +42,9 @@ public:
 protected:
 	Sprite sprite_;
 	float width_, height_;
+	float priority_;
 	Vector velocity_;
 };
 
 using iVector = sf::Vector2i;
-
 using fVector = sf::Vector2f;

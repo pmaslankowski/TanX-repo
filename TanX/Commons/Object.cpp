@@ -3,6 +3,7 @@
 
 Object::Object() :
 	velocity_(0.0, 0.0) {
+//	priority_ = 0;
 	auto rect = getBoundingRect();
 	sprite_.setOrigin(rect.width / 2, rect.height / 2);
 }

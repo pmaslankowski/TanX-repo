@@ -35,7 +35,7 @@ void PlayingState::handleInput(Window &window) {
 			window.close();
 		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A) {
 			std::cout << "Tree added\n";
-			m_objects.push_back(ObjectFactory::create("Tree1", 0, 0, 100, 100));
+			m_objects.push_back(ObjectFactory::create("Tree1", 200, 500, 100, 100, 1));
 			(*m_objects.rbegin())->loadSprite(*m_texture_manager);
 		}
 	}
@@ -62,8 +62,9 @@ void ObjectsLoader::loadFromFile(const std::string & filename) {
 		while (std::getline(file_stream, line))
 			parse_object_line(line);
 		file_stream.close();
-		if (m_state == State::Pending)
+		if (m_state == State::Pending) 
 			m_state = State::Success;
+		std::sort(m_objects.begin(), m_objects.end(), [](auto obj1, auto obj2) { return obj1->getPriority() < obj2->getPriority(); });
 	} else {
 		m_state = State::InvalidFileName;
 	}
@@ -79,13 +80,13 @@ std::vector<Object*> ObjectsLoader::getObjects()
 void ObjectsLoader::parse_object_line(const std::string& line) {
 	std::istringstream stream{ line };
 	std::string object_id;
-	float x, y, width, height;
-	stream >> object_id >> x >> y >> width >> height;
+	float x, y, width, height, priority;
+	stream >> object_id >> x >> y >> width >> height >> priority;
 	if (stream.fail())
 		m_state = State::ParseError;
 
 	try {
-		m_objects.push_back(ObjectFactory::create(object_id, x, y, width, height));
+		m_objects.push_back(ObjectFactory::create(object_id, x, y, width, height, priority));
 	}
 	catch (std::runtime_error& e) {
 		m_state = State::UnknownObject;

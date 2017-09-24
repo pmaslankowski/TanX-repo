@@ -30,9 +30,9 @@
 class Object;
 
 class ObjectFactory final {
-	typedef Object* (*CreateFunctionPtr)(float, float, float, float);
+	typedef Object* (*CreateFunctionPtr)(float, float, float, float, float);
 public:
-	static Object* create(const std::string& id, float x, float y, float width, float height);
+	static Object* create(const std::string& id, float x, float y, float width, float height, float priority);
 	static bool register_object(const std::string& id, CreateFunctionPtr create);
 	static void unregister_object(const std::string& id);
 
@@ -46,8 +46,8 @@ private:
 
 
 #define REGISTER_OBJECT(object, id) static bool __COUNTER__##registered_in_ObjectFactory = \
-	ObjectFactory::register_object((id), [](float x, float y, float width, float height) -> Object* { \
-		return new object(x, y, width, height); \
+	ObjectFactory::register_object((id), [](float x, float y, float width, float height, float priority) -> Object* { \
+		return new object(x, y, width, height, priority); \
 	});
 
 #define REGISTER_OBJECT_WITH_LAMBDA(object, id, lambda) static bool __COUNTER__##_registered_in_ObjectFactory = \

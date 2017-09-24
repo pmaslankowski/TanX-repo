@@ -13,8 +13,8 @@ class Tree final : public Object {
 public:
 	enum class Type { Tree1, Tree2 };
 	
-	Tree(float x, float y, float width, float height, Type type)
-		: Object(x, y, width, height), type(type) {}
+	Tree(float x, float y, float width, float height, float priority, Type type)
+		: Object(x, y, width, height, priority), type(type) {}
 
 	virtual void loadSprite(TextureManager& texture_manager) override;
 
