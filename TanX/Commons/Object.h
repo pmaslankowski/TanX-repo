@@ -24,6 +24,8 @@ public:
 	Vector getVelocity() const { return velocity_; }
 	Rectangle getBoundingRect() const { return sprite_.getGlobalBounds(); }
 	Sprite& getSprite() { return sprite_; }
+	float getVelocityX() const { return velocity_.x; }
+	float getVelocityY() const { return velocity_.y; }
 	float getHeight() const { return height_; }
 	float getWidth() const { return width_; }
 	float getPriority() const { return priority_; }
@@ -32,6 +34,8 @@ public:
 	void setWidth(float width_) { width_ = width_; }
 	void setHeight(float height_) { height_ = height_; }
 	void setVelocity(const Vector& velocity) { velocity_ = velocity; }
+	void setVelocityX(float x) { velocity_.x = x; }
+	void setVelocityY(float y) { velocity_.y = y; }
 	void setPriority(float priority_) { priority_ = priority_; }
 	void scaleTexture();
 

@@ -7,6 +7,7 @@
 #include <Commons/TextureManager.h>
 
 
+
 class Tank final : public Object {
 	using Object::Object;
 public:
@@ -18,4 +19,5 @@ public:
 	virtual void loadSprite(TextureManager& texture_manager) override;
 
 	Type type = Type::TankRed;
+	static const float DEFAULT_VELOCITY;
 };

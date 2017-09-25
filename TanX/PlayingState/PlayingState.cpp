@@ -69,8 +69,41 @@ void PlayingState::handleInput(Window &window) {
 				break;
 
 			case sf::Keyboard::Up:
+				tank_player1->setVelocityY(-Tank::DEFAULT_VELOCITY);
 			break;
 
+			case sf::Keyboard::Down:
+				tank_player1->setVelocityY(Tank::DEFAULT_VELOCITY);
+				break;
+
+			case sf::Keyboard::Left:
+				tank_player1->setVelocityX(-Tank::DEFAULT_VELOCITY);
+				break;
+
+			case sf::Keyboard::Right:
+				tank_player1->setVelocityX(Tank::DEFAULT_VELOCITY);
+				break;
+			}
+			break;
+
+		case sf::Event::KeyReleased:
+			switch (event.key.code)
+			{
+			case sf::Keyboard::Up:
+				tank_player1->setVelocityY(0);
+				break;
+
+			case sf::Keyboard::Down:
+				tank_player1->setVelocityY(0);
+				break;
+
+			case sf::Keyboard::Left:
+				tank_player1->setVelocityX(0);
+				break;
+
+			case sf::Keyboard::Right:
+				tank_player1->setVelocityX(0);
+				break;
 			}
 			break;
 
@@ -88,8 +121,8 @@ void PlayingState::handleInput(Window &window) {
 
 
 void PlayingState::update(double dt) {
-	/*for (auto* tank : m_tanks)
-		tank->update(dt);*/
+	for (auto* tank : m_tanks)
+		tank->update(dt);
 }
 
 

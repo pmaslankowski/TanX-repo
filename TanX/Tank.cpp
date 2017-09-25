@@ -7,6 +7,11 @@
 
 #include "Tank.h"
 
+
+const float Tank::DEFAULT_VELOCITY = 0.1f;
+
+
+
 void Tank::loadSprite(TextureManager& texture_manager) {
 	switch (type) {
 	case Type::TankRed:
