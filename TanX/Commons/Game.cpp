@@ -8,7 +8,7 @@
 
 Game::Game(const GameSettings& settings) {
 	textureManager_.loadTextures();
-	int screenStyle = settings.fullscreen ? sf::Style::Fullscreen : sf::Style::Default;
+	int screenStyle = settings.fullscreen ? sf::Style::Close : sf::Style::Default;
 	window_.create(sf::VideoMode(settings.screenWidth, settings.screenHeight), settings.title, screenStyle);
 	
 	this->maxFPS = settings.maxFPS;

@@ -14,7 +14,7 @@ using Vector = sf::Vector2f;
 class MainMenuState : public GameState {
 public:
 	MainMenuState() :
-		isFullScreen(true)
+		isFullScreen(false)
 	{}
 	~MainMenuState() {}
 

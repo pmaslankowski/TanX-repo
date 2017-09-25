@@ -10,11 +10,11 @@ using Window = sf::RenderWindow;
 
 /* Structure with game settings */
 struct GameSettings {
-	std::string title = "TanX"; //title displayed on window bar
+	std::string title = "TanX (1280x720)"; //title displayed on window bar
 	int screenWidth = 1280;
 	int screenHeight = 720;
 	double maxFPS = 60;
-	bool fullscreen = true;
+	bool fullscreen = false;
 };
 
 

@@ -105,6 +105,7 @@ void MainMenuState::handleInput(Window &window) {
 			for (int i = 0; i < stripe_vector.size() / 2; i++)
 				if (sprite_vector.at(i + 6).getGlobalBounds().contains(mouse_position.x, mouse_position.y) && bullet_fired<0)
 					bullet_fired = i;
+			//std::cout << mouse_position.x << ", " << mouse_position.y << "\n";
 			break;
 
 		default:

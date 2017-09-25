@@ -12,12 +12,17 @@ PlayingState::PlayingState(const std::string& level_filename) {
 	loader.loadFromFile(level_filename);
 	std::cout << "Stan loadera:" << static_cast<int>(loader.getState()) << "\n";
 	m_objects = loader.getObjects();
+	m_tanks = loader.getTanks();
+	tank_player1 = m_tanks.at(0);
+	//std::cout << "My tank pos: " << tank_player1->getPosition().x << "\n";
 }
 
 
 PlayingState::~PlayingState() {
 	for (auto* object : m_objects)
 		delete object;
+	for (auto* tank : m_tanks)
+		delete tank;
 }
 
 
@@ -25,6 +30,8 @@ void PlayingState::loadSprites(TextureManager& textureManager){
 	m_texture_manager = &textureManager;
 	for (auto* object : m_objects)
 		object->loadSprite(textureManager);
+	for (auto* tank : m_tanks)
+		tank->loadSprite(textureManager);
 }
 
 
@@ -40,15 +47,15 @@ void PlayingState::handleInput(Window &window) {
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
-				if (isFullScreen)
+				/*if (isFullScreen)
 					window.create(sf::VideoMode(1280, 720), "TanX - main menu (1280x720)");
-				isFullScreen = false;
+				isFullScreen = false;*/
 				break;
 
 			case sf::Keyboard::F5:
-				if (!isFullScreen)
+				/*if (!isFullScreen)
 					window.create(sf::VideoMode(1280, 720), "TanX - main menu (1280x720)", sf::Style::Fullscreen);
-				isFullScreen = true;
+				isFullScreen = true;*/
 				break;
 
 			case sf::Keyboard::A:
@@ -60,6 +67,10 @@ void PlayingState::handleInput(Window &window) {
 			case sf::Keyboard::Return:
 				window.close();
 				break;
+
+			case sf::Keyboard::Up:
+			break;
+
 			}
 			break;
 
@@ -77,12 +88,17 @@ void PlayingState::handleInput(Window &window) {
 
 
 void PlayingState::update(double dt) {
+	/*for (auto* tank : m_tanks)
+		tank->update(dt);*/
 }
 
 
 void PlayingState::draw(Window &window) const {
 	for (auto* object : m_objects)
 		object->draw(window);
+
+	for (auto* tank : m_tanks)
+		tank->draw(window);
 }
 
 
@@ -111,6 +127,13 @@ std::vector<Object*> ObjectsLoader::getObjects()
 	return {};
 }
 
+std::vector<Object*> ObjectsLoader::getTanks()
+{
+	if (m_state == State::Success)
+		return m_tanks;
+	return{};
+}
+
 void ObjectsLoader::parse_object_line(const std::string& line) {
 	std::istringstream stream{ line };
 	std::string object_id;
@@ -120,7 +143,10 @@ void ObjectsLoader::parse_object_line(const std::string& line) {
 		m_state = State::ParseError;
 
 	try {
-		m_objects.push_back(ObjectFactory::create(object_id, x, y, width, height, priority));
+		if ((int)object_id.find("Tank") >= 0)
+			m_tanks.push_back(ObjectFactory::create(object_id, x, y, width, height, priority));
+		else
+			m_objects.push_back(ObjectFactory::create(object_id, x, y, width, height, priority));
 	}
 	catch (std::runtime_error& e) {
 		m_state = State::UnknownObject;

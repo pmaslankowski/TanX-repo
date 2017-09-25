@@ -7,6 +7,7 @@
 #include <Commons/GameState.h>
 #include <Commons/Object.h>
 #include <Commons/TextureManager.h>
+#include <Tank.h>
 
 
 using Window = sf::RenderWindow;
@@ -25,6 +26,8 @@ private:
 	bool isFullScreen;
 	TextureManager* m_texture_manager;
 	std::vector<Object*> m_objects;
+	std::vector<Object*> m_tanks;
+	Object* tank_player1; //possibly: change it to Tank later
 };
 
 
@@ -52,10 +55,12 @@ public:
 
 	void loadFromFile(const std::string& filename);
 	std::vector<Object*> getObjects();
+	std::vector<Object*> getTanks();
 	State getState() const { return m_state; }
 
 private:
 	void parse_object_line(const std::string& line);
 	std::vector<Object*> m_objects;
+	std::vector<Object*> m_tanks;
 	State m_state = State::Pending;
 };
