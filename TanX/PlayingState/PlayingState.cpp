@@ -15,9 +15,6 @@ PlayingState::PlayingState(const std::string& level_filename) {
 	m_tanks = loader.getTanks();
 	tank_player1 = m_tanks.at(0);
 
-	tank_player1->setDefaultOrigin();
-
-	std::cout << tank_player1->getSprite().getOrigin().x << "\n";
 	//std::cout << "My tank origin " << tank_player1->get << ", " << tank_player1->getLocalBounds().top << "\n";
 }
 
@@ -42,6 +39,7 @@ void PlayingState::loadSprites(TextureManager& textureManager){
 void PlayingState::handleInput(Window &window) {
 	sf::Event event;
 	while (window.pollEvent(event)) {
+		const auto& rect = tank_player1->getSprite().getTextureRect();
 		switch (event.type) {
 		case sf::Event::Closed:
 			window.close();
@@ -87,13 +85,11 @@ void PlayingState::handleInput(Window &window) {
 				break;
 
 			case sf::Keyboard::Left:
-				tank_player1->setOrientation(tank_player1->getRotation() - 2);
-				std::cout << "Left\n";
-
+				tank_player1->setOrientation(tank_player1->getRotation() - 2.5);
 				break;
 
 			case sf::Keyboard::Right:
-				tank_player1->setOrientation(tank_player1->getRotation() + 2);
+				tank_player1->setOrientation(tank_player1->getRotation() + 2.5);
 				break;
 			}
 			break;

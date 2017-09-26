@@ -34,13 +34,13 @@ void Tank::loadSprite(TextureManager& texture_manager) {
 		break;
 	}
 	scaleTexture();
+	setDefaultOrigin();
 }
 
 void Tank::setDefaultOrigin() {
-	std::cout << sprite_.getOrigin().x << ", " << sprite_.getOrigin().y << "\n";
-	Vector center_point(width_*0.5, height_*0.53);
+	const auto& rect = sprite_.getTextureRect();
+	Vector center_point(rect.width * 0.5, rect.height * 0.53);
 	sprite_.setOrigin(center_point);
-	std::cout << sprite_.getOrigin().x << ", " << sprite_.getOrigin().y << "\n";
 }
 
 
