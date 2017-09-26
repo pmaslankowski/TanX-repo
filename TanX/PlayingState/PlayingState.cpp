@@ -22,8 +22,6 @@ PlayingState::PlayingState(const std::string& level_filename) {
 PlayingState::~PlayingState() {
 	for (auto* object : m_objects)
 		delete object;
-	for (auto* tank : m_tanks)
-		delete tank;
 }
 
 
@@ -31,8 +29,6 @@ void PlayingState::loadSprites(TextureManager& textureManager){
 	m_texture_manager = &textureManager;
 	for (auto* object : m_objects)
 		object->loadSprite(textureManager);
-	for (auto* tank : m_tanks)
-		tank->loadSprite(textureManager);
 }
 
 
@@ -125,14 +121,6 @@ void PlayingState::update(double dt) {
 void PlayingState::draw(Window &window) const {
 	for (auto* object : m_objects)
 		object->draw(window);
-
-	for (auto* tank : m_tanks)
-		tank->draw(window);
-}
-
-
-void PlayingState::handleTankRotation(float angle) {
-
 }
 
 
@@ -176,8 +164,11 @@ void ObjectsLoader::parse_object_line(const std::string& line) {
 		m_state = State::ParseError;
 
 	try {
-		if ((int)object_id.find("Tank") >= 0)
-			m_tanks.push_back(static_cast<Tank*>(ObjectFactory::create(object_id, x, y, width, height, priority)));
+		if ((int)object_id.find("Tank") >= 0) {
+			Tank* temp_tank = static_cast<Tank*>(ObjectFactory::create(object_id, x, y, width, height, priority));
+			m_tanks.push_back(temp_tank);
+			m_objects.push_back(temp_tank);
+		}
 		else
 			m_objects.push_back(ObjectFactory::create(object_id, x, y, width, height, priority));
 	}

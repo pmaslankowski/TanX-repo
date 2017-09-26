@@ -45,10 +45,12 @@ private:
 };
 
 
-#define REGISTER_OBJECT(object, id) static bool __COUNTER__##registered_in_ObjectFactory = \
+#define UGLY_HACK2(a,b) a ## b
+#define UGLY_HACK(a,b) UGLY_HACK2(a,b)
+#define REGISTER_OBJECT(object, id) static bool UGLY_HACK(registered_in_ObjectFactory, __COUNTER__) = \
 	ObjectFactory::register_object((id), [](float x, float y, float width, float height, float priority) -> Object* { \
 		return new object(x, y, width, height, priority); \
 	});
 
-#define REGISTER_OBJECT_WITH_LAMBDA(object, id, lambda) static bool __COUNTER__##_registered_in_ObjectFactory = \
+#define REGISTER_OBJECT_WITH_LAMBDA(object, id, lambda) static bool UGLY_HACK(registered_in_ObjectFactory, __COUNTER__) = \
 	ObjectFactory::register_object((id), (lambda));

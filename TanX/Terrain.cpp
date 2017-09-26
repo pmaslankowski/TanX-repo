@@ -28,8 +28,8 @@ REGISTER_OBJECT(Terrain, "TerrainGrass");
 REGISTER_OBJECT_WITH_LAMBDA(Terrain, "TerrainSand", [](float x, float y, float width, float height, float priority) -> Object* {
 	return new Terrain(x, y, width, height, priority, Terrain::Type::TerrainSand);
 });
-//REGISTER_OBJECT_WITH_LAMBDA(Terrain, "TerrainMud", [](float x, float y, float width, float height, float priority) -> Object* {
-//	return new Terrain(x, y, width, height, priority, Terrain::Type::TerrainMud);
-//});
+REGISTER_OBJECT_WITH_LAMBDA(Terrain, "TerrainMud", [](float x, float y, float width, float height, float priority) -> Object* {
+	return new Terrain(x, y, width, height, priority, Terrain::Type::TerrainMud);
+});
 
 

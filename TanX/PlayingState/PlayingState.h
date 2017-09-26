@@ -22,8 +22,6 @@ public:
 	void update(double dt);
 	void draw(Window& window) const;
 
-	void handleTankRotation(float angle);
-
 private:
 	bool isFullScreen;
 	TextureManager* m_texture_manager;
