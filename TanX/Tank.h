@@ -17,7 +17,8 @@ public:
 		: Object(x, y, width, height, priority), type(type) {}
 
 	virtual void loadSprite(TextureManager& texture_manager) override;
+	virtual void setDefaultOrigin() override;
 
 	Type type = Type::TankRed;
-	static const float DEFAULT_VELOCITY;
+	static const float VELOCITY_SCALE; //the number of times velocity will be reduced
 };

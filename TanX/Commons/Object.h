@@ -18,9 +18,10 @@ public:
 	explicit Object(Texture& texture);
 
 	virtual ~Object() {}
-
+	
 	Vector getPosition() const { return sprite_.getPosition(); }
 	Vector getOrientation() const { return sprite_.getOrientation(); }
+	float getRotation() const { return sprite_.getRotation(); }
 	Vector getVelocity() const { return velocity_; }
 	Rectangle getBoundingRect() const { return sprite_.getGlobalBounds(); }
 	Sprite& getSprite() { return sprite_; }
@@ -31,6 +32,8 @@ public:
 	float getPriority() const { return priority_; }
 	void setPosition(const Vector& position) { sprite_.setPosition(position); }
 	void setOrientation(const Vector& orientation) { sprite_.setOrientation(orientation); }
+	void setOrientation(const float angle) { sprite_.setOrientation(angle); }
+	void setRotation(const float rotation) { sprite_.setRotation(rotation); }
 	void setWidth(float width_) { width_ = width_; }
 	void setHeight(float height_) { height_ = height_; }
 	void setVelocity(const Vector& velocity) { velocity_ = velocity; }
@@ -42,6 +45,7 @@ public:
 	virtual void loadSprite(TextureManager& textureManager) {} // remember to invoke scaleTexture in this function
 	virtual void update(float dt);
 	virtual void draw(Window &window) const { window.draw(sprite_); }
+	virtual void setDefaultOrigin() {};
 	
 	std::string id;
 protected:

@@ -8,7 +8,7 @@
 #include "Tank.h"
 
 
-const float Tank::DEFAULT_VELOCITY = 0.1f;
+const float Tank::VELOCITY_SCALE = 10;
 
 
 
@@ -34,6 +34,13 @@ void Tank::loadSprite(TextureManager& texture_manager) {
 		break;
 	}
 	scaleTexture();
+}
+
+void Tank::setDefaultOrigin() {
+	std::cout << sprite_.getOrigin().x << ", " << sprite_.getOrigin().y << "\n";
+	Vector center_point(width_*0.5, height_*0.53);
+	sprite_.setOrigin(center_point);
+	std::cout << sprite_.getOrigin().x << ", " << sprite_.getOrigin().y << "\n";
 }
 
 

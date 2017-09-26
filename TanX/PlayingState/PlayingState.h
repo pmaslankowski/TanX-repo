@@ -22,12 +22,14 @@ public:
 	void update(double dt);
 	void draw(Window& window) const;
 
+	void handleTankRotation(float angle);
+
 private:
 	bool isFullScreen;
 	TextureManager* m_texture_manager;
 	std::vector<Object*> m_objects;
-	std::vector<Object*> m_tanks;
-	Object* tank_player1; //possibly: change it to Tank later
+	std::vector<Tank*> m_tanks;
+	Tank* tank_player1; //possibly: change it to Tank later
 };
 
 
@@ -55,12 +57,12 @@ public:
 
 	void loadFromFile(const std::string& filename);
 	std::vector<Object*> getObjects();
-	std::vector<Object*> getTanks();
+	std::vector<Tank*> getTanks();
 	State getState() const { return m_state; }
 
 private:
 	void parse_object_line(const std::string& line);
 	std::vector<Object*> m_objects;
-	std::vector<Object*> m_tanks;
+	std::vector<Tank*> m_tanks;
 	State m_state = State::Pending;
 };

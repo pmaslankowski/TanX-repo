@@ -14,7 +14,11 @@ PlayingState::PlayingState(const std::string& level_filename) {
 	m_objects = loader.getObjects();
 	m_tanks = loader.getTanks();
 	tank_player1 = m_tanks.at(0);
-	//std::cout << "My tank pos: " << tank_player1->getPosition().x << "\n";
+
+	tank_player1->setDefaultOrigin();
+
+	std::cout << tank_player1->getSprite().getOrigin().x << "\n";
+	//std::cout << "My tank origin " << tank_player1->get << ", " << tank_player1->getLocalBounds().top << "\n";
 }
 
 
@@ -44,6 +48,7 @@ void PlayingState::handleInput(Window &window) {
 			break;
 
 		case sf::Event::KeyPressed:
+
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Escape:
@@ -61,7 +66,9 @@ void PlayingState::handleInput(Window &window) {
 			case sf::Keyboard::A:
 				std::cout << "Tree added\n";
 				m_objects.push_back(ObjectFactory::create("Tree1", 200, 500, 100, 100, 1));
-				(*m_objects.rbegin())->loadSprite(*m_texture_manager);
+				(*m_objects.rbegin())->loadSprite(*m_texture_manager);		
+				//if (event.key.code == sf::Keyboard::S)
+				//	std::cout << "Blablabla\n";
 				break;
 
 			case sf::Keyboard::Return:
@@ -69,19 +76,24 @@ void PlayingState::handleInput(Window &window) {
 				break;
 
 			case sf::Keyboard::Up:
-				tank_player1->setVelocityY(-Tank::DEFAULT_VELOCITY);
+				tank_player1->setVelocity(tank_player1->getOrientation()/Tank::VELOCITY_SCALE);
+				std::cout << "Orientation: " << tank_player1->getOrientation().x << ", " << tank_player1->getOrientation().y << "\n";
+				//std::cout << "Rotation: " << tank_player1->getRotation() << "\n\n";
 			break;
 
 			case sf::Keyboard::Down:
-				tank_player1->setVelocityY(Tank::DEFAULT_VELOCITY);
+				tank_player1->setVelocity(sf::Vector2f(0,0));
+				//std::cout << tank_player1->getSprite().getOrigin().x << "\n";			
 				break;
 
 			case sf::Keyboard::Left:
-				tank_player1->setVelocityX(-Tank::DEFAULT_VELOCITY);
+				tank_player1->setOrientation(tank_player1->getRotation() - 2);
+				std::cout << "Left\n";
+
 				break;
 
 			case sf::Keyboard::Right:
-				tank_player1->setVelocityX(Tank::DEFAULT_VELOCITY);
+				tank_player1->setOrientation(tank_player1->getRotation() + 2);
 				break;
 			}
 			break;
@@ -90,19 +102,7 @@ void PlayingState::handleInput(Window &window) {
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Up:
-				tank_player1->setVelocityY(0);
-				break;
-
-			case sf::Keyboard::Down:
-				tank_player1->setVelocityY(0);
-				break;
-
-			case sf::Keyboard::Left:
-				tank_player1->setVelocityX(0);
-				break;
-
-			case sf::Keyboard::Right:
-				tank_player1->setVelocityX(0);
+				tank_player1->setVelocity(sf::Vector2f(0, 0));
 				break;
 			}
 			break;
@@ -135,6 +135,10 @@ void PlayingState::draw(Window &window) const {
 }
 
 
+void PlayingState::handleTankRotation(float angle) {
+
+}
+
 
 
 
@@ -160,7 +164,7 @@ std::vector<Object*> ObjectsLoader::getObjects()
 	return {};
 }
 
-std::vector<Object*> ObjectsLoader::getTanks()
+std::vector<Tank*> ObjectsLoader::getTanks()
 {
 	if (m_state == State::Success)
 		return m_tanks;
@@ -177,7 +181,7 @@ void ObjectsLoader::parse_object_line(const std::string& line) {
 
 	try {
 		if ((int)object_id.find("Tank") >= 0)
-			m_tanks.push_back(ObjectFactory::create(object_id, x, y, width, height, priority));
+			m_tanks.push_back(static_cast<Tank*>(ObjectFactory::create(object_id, x, y, width, height, priority)));
 		else
 			m_objects.push_back(ObjectFactory::create(object_id, x, y, width, height, priority));
 	}
