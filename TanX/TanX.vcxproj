@@ -29,6 +29,8 @@
     <ClCompile Include="Commons\WindowsFileSystem.cpp" />
     <ClCompile Include="MainMenuState\MainMenuState.cpp" />
     <ClCompile Include="PlayingState\ObjectFactory.cpp" />
+    <ClCompile Include="PlayingState\Objects\Tank.cpp" />
+    <ClCompile Include="PlayingState\Objects\Terrain.cpp" />
     <ClCompile Include="PlayingState\Objects\Tree.cpp" />
     <ClCompile Include="PlayingState\PlayingState.cpp" />
     <ClCompile Include="SinglePlayerState\ColoredTank.cpp" />
@@ -36,8 +38,6 @@
     <ClCompile Include="SinglePlayerState\NameStripe.cpp" />
     <ClCompile Include="SinglePlayerState\SinglePlayerState.cpp" />
     <ClCompile Include="SinglePlayerState\Stars.cpp" />
-    <ClCompile Include="Tank.cpp" />
-    <ClCompile Include="Terrain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Commons\FileSystem.h" />
@@ -54,6 +54,8 @@
     <ClInclude Include="PlayingState\CollisionDetector.h" />
     <ClInclude Include="PlayingState\CollisionDispatcher.h" />
     <ClInclude Include="PlayingState\ObjectFactory.h" />
+    <ClInclude Include="PlayingState\Objects\Tank.h" />
+    <ClInclude Include="PlayingState\Objects\Terrain.h" />
     <ClInclude Include="PlayingState\Objects\Tree.h" />
     <ClInclude Include="PlayingState\PlayingState.h" />
     <ClInclude Include="SinglePlayerState\ColoredTank.h" />
@@ -61,8 +63,6 @@
     <ClInclude Include="SinglePlayerState\NameStripe.h" />
     <ClInclude Include="SinglePlayerState\SinglePlayerState.h" />
     <ClInclude Include="SinglePlayerState\Stars.h" />
-    <ClInclude Include="Tank.h" />
-    <ClInclude Include="Terrain.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9AA154B8-C444-41A3-89FC-A587589600FB}</ProjectGuid>

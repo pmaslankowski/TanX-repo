@@ -66,13 +66,13 @@
     <ClCompile Include="PlayingState\ObjectFactory.cpp">
       <Filter>PlayingState</Filter>
     </ClCompile>
+    <ClCompile Include="PlayingState\Objects\Tank.cpp">
+      <Filter>PlayingState\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayingState\Objects\Terrain.cpp">
+      <Filter>PlayingState\Objects</Filter>
+    </ClCompile>
     <ClCompile Include="PlayingState\Objects\Tree.cpp">
-      <Filter>PlayingState\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Terrain.cpp">
-      <Filter>PlayingState\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Tank.cpp">
       <Filter>PlayingState\Objects</Filter>
     </ClCompile>
   </ItemGroup>
@@ -137,13 +137,13 @@
     <ClInclude Include="PlayingState\CollisionDetector.h">
       <Filter>PlayingState</Filter>
     </ClInclude>
+    <ClInclude Include="PlayingState\Objects\Tank.h">
+      <Filter>PlayingState\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayingState\Objects\Terrain.h">
+      <Filter>PlayingState\Objects</Filter>
+    </ClInclude>
     <ClInclude Include="PlayingState\Objects\Tree.h">
-      <Filter>PlayingState\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Terrain.h">
-      <Filter>PlayingState\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Tank.h">
       <Filter>PlayingState\Objects</Filter>
     </ClInclude>
   </ItemGroup>

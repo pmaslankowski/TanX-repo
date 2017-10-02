@@ -7,7 +7,7 @@
 #include <Commons/GameState.h>
 #include <Commons/Object.h>
 #include <Commons/TextureManager.h>
-#include <Tank.h>
+#include <PlayingState/Objects/Tank.h>
 
 
 using Window = sf::RenderWindow;
