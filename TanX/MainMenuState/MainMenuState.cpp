@@ -8,7 +8,7 @@
 #include <SinglePlayerState/SinglePlayerState.h>
 
 
-const double PI = 3.14159265;
+#define PI 3.14159265358979
 
 
 void MainMenuState::loadSprites(TextureManager & textureManager) {

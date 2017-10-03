@@ -1,9 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Vector.h"
 
 #define MY_PI 3.14159265358979
 
-using Vector = sf::Vector2f;
+//using Vector = sf::Vector2f;
 
 class Sprite : public sf::Sprite {
 public:

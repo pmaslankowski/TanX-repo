@@ -6,6 +6,7 @@
 
 #include <Commons/GameState.h>
 #include <Commons/Object.h>
+#include <Commons/Vector.h>
 #include <Commons/TextureManager.h>
 #include <PlayingState/Objects/Tank.h>
 
@@ -27,7 +28,7 @@ private:
 	TextureManager* m_texture_manager;
 	std::vector<Object*> m_objects;
 	std::vector<Tank*> m_tanks;
-	Tank* tank_player1; //possibly: change it to Tank later
+	Tank* tank_player1; 
 };
 
 

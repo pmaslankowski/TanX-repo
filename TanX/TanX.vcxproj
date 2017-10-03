@@ -26,6 +26,7 @@
     <ClCompile Include="Commons\Sprite.cpp" />
     <ClCompile Include="Commons\Stripe.cpp" />
     <ClCompile Include="Commons\TextureManager.cpp" />
+    <ClCompile Include="Commons\Vector.cpp" />
     <ClCompile Include="Commons\WindowsFileSystem.cpp" />
     <ClCompile Include="MainMenuState\MainMenuState.cpp" />
     <ClCompile Include="PlayingState\ObjectFactory.cpp" />
@@ -49,6 +50,7 @@
     <ClInclude Include="Commons\Sprite.h" />
     <ClInclude Include="Commons\Stripe.h" />
     <ClInclude Include="Commons\TextureManager.h" />
+    <ClInclude Include="Commons\Vector.h" />
     <ClInclude Include="Commons\WindowsFileSystem.h" />
     <ClInclude Include="MainMenuState\MainMenuState.h" />
     <ClInclude Include="PlayingState\CollisionDetector.h" />

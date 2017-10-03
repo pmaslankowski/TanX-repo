@@ -3,9 +3,10 @@
 #include <SFML/Graphics.hpp>
 #include "Sprite.h"
 #include "TextureManager.h"
+#include "Vector.h"
 
 
-using Vector = sf::Vector2f;
+//using Vector = sf::Vector2f;
 using Window = sf::RenderWindow;
 using Rectangle = sf::FloatRect;
 using Texture = sf::Texture;

@@ -75,6 +75,9 @@
     <ClCompile Include="PlayingState\Objects\Tree.cpp">
       <Filter>PlayingState\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Commons\Vector.cpp">
+      <Filter>Commons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenuState\MainMenuState.h">
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="PlayingState\Objects\Tree.h">
       <Filter>PlayingState\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Commons\Vector.h">
+      <Filter>Commons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

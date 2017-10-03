@@ -5,6 +5,7 @@
 #include <Commons/Sprite.h>
 #include <Commons/Object.h>
 #include <Commons/TextureManager.h>
+#include <Commons/Vector.h>
 
 
 

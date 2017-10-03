@@ -36,6 +36,7 @@ void PlayingState::handleInput(Window &window) {
 	sf::Event event;
 	while (window.pollEvent(event)) {
 		const auto& rect = tank_player1->getSprite().getTextureRect();
+		Vector current_velocity = tank_player1->getVelocity();
 		switch (event.type) {
 		case sf::Event::Closed:
 			window.close();
@@ -61,8 +62,8 @@ void PlayingState::handleInput(Window &window) {
 				std::cout << "Tree added\n";
 				m_objects.push_back(ObjectFactory::create("Tree1", 200, 500, 100, 100, 1));
 				(*m_objects.rbegin())->loadSprite(*m_texture_manager);		
-				//if (event.key.code == sf::Keyboard::S)
-				//	std::cout << "Blablabla\n";
+
+				//std::cout << "Velocity: " << tank_player1->getVelocity().x << ", " << tank_player1->getVelocity().y << "\n";
 				break;
 
 			case sf::Keyboard::Return:
@@ -71,21 +72,37 @@ void PlayingState::handleInput(Window &window) {
 
 			case sf::Keyboard::Up:
 				tank_player1->setVelocity(tank_player1->getOrientation()/Tank::VELOCITY_SCALE);
-				std::cout << "Orientation: " << tank_player1->getOrientation().x << ", " << tank_player1->getOrientation().y << "\n";
+
+				//tank_player1->setVelocity(tank_player1->getOrientation()/Tank::VELOCITY_SCALE);
+				//std::cout << "Orientation: " << tank_player1->getOrientation().x << ", " << tank_player1->getOrientation().y << "\n";
 				//std::cout << "Rotation: " << tank_player1->getRotation() << "\n\n";
 			break;
 
 			case sf::Keyboard::Down:
-				tank_player1->setVelocity(sf::Vector2f(0,0));
-				//std::cout << tank_player1->getSprite().getOrigin().x << "\n";			
+				tank_player1->setVelocity(-(tank_player1->getOrientation() / Tank::VELOCITY_SCALE));	
 				break;
 
 			case sf::Keyboard::Left:
-				tank_player1->setOrientation(tank_player1->getRotation() - 2.5);
+				if (current_velocity.x == 0 && current_velocity.y == 0)
+					tank_player1->setOrientation(tank_player1->getRotation() - 2.5);
+				else {
+					current_velocity.rotateRight(-2.5);
+					tank_player1->setOrientation(current_velocity);
+					tank_player1->setVelocity(current_velocity);
+				}
+
+				//std::cout << "Velocity: " << tank_player1->getVelocity().x << ", " << tank_player1->getVelocity().y << "\n";
+				//tank_player1->setOrientation(tank_player1->getRotation() - 2.5);
 				break;
 
 			case sf::Keyboard::Right:
-				tank_player1->setOrientation(tank_player1->getRotation() + 2.5);
+				if (current_velocity.x == 0 && current_velocity.y == 0)
+					tank_player1->setOrientation(tank_player1->getRotation() + 2.5);
+				else {
+					current_velocity.rotateRight(2.5);
+					tank_player1->setOrientation(current_velocity);
+					tank_player1->setVelocity(current_velocity);
+				}
 				break;
 			}
 			break;
@@ -94,7 +111,10 @@ void PlayingState::handleInput(Window &window) {
 			switch (event.key.code)
 			{
 			case sf::Keyboard::Up:
-				tank_player1->setVelocity(sf::Vector2f(0, 0));
+				tank_player1->setVelocity(Vector(0, 0));
+				break;
+			case sf::Keyboard::Down:
+				tank_player1->setVelocity(Vector(0, 0));
 				break;
 			}
 			break;

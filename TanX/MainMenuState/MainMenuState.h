@@ -6,10 +6,10 @@
 #include <Commons/Sprite.h>
 #include <Commons/Stripe.h>
 #include <Commons/TextureManager.h>
+#include <Commons/Vector.h>
 
 
-
-using Vector = sf::Vector2f;
+//using Vector = sf::Vector2f;
 
 class MainMenuState : public GameState {
 public:
