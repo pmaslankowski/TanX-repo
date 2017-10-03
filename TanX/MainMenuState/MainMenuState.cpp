@@ -6,6 +6,7 @@
 #include <MainMenuState/MainMenuState.h>
 #include <PlayingState/PlayingState.h>
 #include <SinglePlayerState/SinglePlayerState.h>
+#include <EditorsState.h>
 
 
 #define PI 3.14159265358979
@@ -128,6 +129,10 @@ void MainMenuState::update(double dt) {
 	if (current_x > 1260 && bullet_fired == 0) {
 		m_nextState = std::make_unique<SinglePlayerState>();
 		std::cout << "PRZELACZENIE STANU" << std::endl;
+	}
+	if (current_x > 1260 && bullet_fired == 2) {
+		m_nextState = std::make_unique<EditorsState>();
+		std::cout << "PRZELACZENIE NA EDYCJE" << std::endl;
 	}
 }
 

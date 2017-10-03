@@ -28,6 +28,7 @@
     <ClCompile Include="Commons\TextureManager.cpp" />
     <ClCompile Include="Commons\Vector.cpp" />
     <ClCompile Include="Commons\WindowsFileSystem.cpp" />
+    <ClCompile Include="EditorsState.cpp" />
     <ClCompile Include="MainMenuState\MainMenuState.cpp" />
     <ClCompile Include="PlayingState\ObjectFactory.cpp" />
     <ClCompile Include="PlayingState\Objects\Tank.cpp" />
@@ -52,6 +53,7 @@
     <ClInclude Include="Commons\TextureManager.h" />
     <ClInclude Include="Commons\Vector.h" />
     <ClInclude Include="Commons\WindowsFileSystem.h" />
+    <ClInclude Include="EditorsState.h" />
     <ClInclude Include="MainMenuState\MainMenuState.h" />
     <ClInclude Include="PlayingState\CollisionDetector.h" />
     <ClInclude Include="PlayingState\CollisionDispatcher.h" />

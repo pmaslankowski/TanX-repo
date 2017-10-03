@@ -78,6 +78,7 @@
     <ClCompile Include="Commons\Vector.cpp">
       <Filter>Commons</Filter>
     </ClCompile>
+    <ClCompile Include="EditorsState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenuState\MainMenuState.h">
@@ -152,5 +153,6 @@
     <ClInclude Include="Commons\Vector.h">
       <Filter>Commons</Filter>
     </ClInclude>
+    <ClInclude Include="EditorsState.h" />
   </ItemGroup>
 </Project>
